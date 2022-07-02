@@ -1,0 +1,212 @@
+html {
+    scroll-behavior: smooth;
+}
+ul {
+    list-style: none;
+}
+.messageStructures {
+    position: relative;
+    right: 40px;
+    color: #c0c0c0;
+    background-color: #202020;
+    border: none;
+    outline: none;
+    pointer-events: auto;
+    width : 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+.messageStructures:hover {
+    color: white;
+}
+.container:hover .messageStructures {
+    color: white;
+}
+.messageStructures::-webkit-input-placeholder {
+    color: #c0c0c0;
+}
+.messageStructures:-moz-placeholder {
+    color: #c0c0c0;
+}
+.button {
+    background-color: #e7e7e7;
+    border-radius: 4px;
+    height: 18px;
+    border: none;
+    outline: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-out;
+}
+.button:hover {
+    background-color: #c9c9c9;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-out;
+}
+.a {
+    position: relative;
+    color: white;
+    background-color: #202020;
+    right: 42px;
+    height: 15px;
+    padding-left: 2px;
+    padding-right: 2px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.div {
+    display: none;
+}
+.container {
+    display: inline-block;
+}
+.container:hover .div {
+    display: inline-block;
+}
+#iconInput {
+    cursor: default;
+    margin-right: -2px;
+    padding-bottom: 4px;
+    margin-left: 0px;
+    color: #c0c0c0;
+}
+.container:hover #iconInput {
+    color: white;
+}
+.subclass {
+    color: white;
+    position: relative;
+    right: 35px;
+}
+.select {
+    -moz-appearance:none;
+	-webkit-appearance:none;
+	-ms-appearance:none;
+	-o-appearance:none;
+	appearance:none;
+    border: none;
+    outline: none;
+    color: #c0c0c0;
+    background: transparent;
+    font-size: 11px;
+    width: 100px;
+}
+option {
+    color: black;
+}
+#iconSelect1 {
+    color: #c0c0c0;
+    padding-right: 4px;
+}
+#iconSelect2 {
+    color: #c0c0c0;
+    padding-right: 4px;
+}
+#iconSelect3 {
+    color: #c0c0c0;
+    padding-right: 4px;
+}
+.subclass:hover .select {
+    color: white;
+}
+.subclass:hover #iconSelect1 {
+    color: white;
+}
+.subclass:hover #iconSelect2 {
+    color: white;
+}
+.subclass:hover #iconSelect3 {
+    color: white;
+}
+.example {
+    border: none;
+    outline: none;
+    color: #c0c0c0;
+    background: #202020;
+    font-size: 11px;
+    width: 110px;
+    margin-left: -2px;
+}
+.example::-webkit-input-placeholder {
+    color: #c0c0c0;
+}
+.example:-moz-placeholder {
+    color: #c0c0c0;
+}
+.subclass:hover .example {
+    color: white;
+}
+.view-model{
+    white-space: pre;
+    max-height : 500px !important;
+    width : 600px;
+}
+.view-model-normal {
+    max-height : 500px !important;
+    width : 512px;
+    text-align-last: initial;
+}
+.view-model-normal > .swal-text {
+    background-color: initial;
+    padding: initial;
+    border: initial;
+    display: initial;
+    margin: initial;
+}
+.swal-text {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f5f5f5;
+    padding: 17px;
+    border: 1px solid rgb(210, 210, 210);
+    display: block;
+    margin: 22px;
+    overflow-y: auto;
+    max-height: 300px !important;
+}
+.swal-title {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    top: 0;
+}
+.swal-footer {
+    position: relative;
+    bottom: 0;
+    text-align-last: right;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+/* Corner */
+::-webkit-scrollbar-corner {
+    background: rgb(150, 150, 150);
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(150, 150, 150);
+}
+/* Swal Corner */
+.swal-text::-webkit-scrollbar-corner {
+    background: rgb(210, 210, 210);
+}
+/* Swal Track */
+.swal-text::-webkit-scrollbar-track {
+    background: rgb(210, 210, 210);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(80, 80, 80);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(70, 70, 70);
+}

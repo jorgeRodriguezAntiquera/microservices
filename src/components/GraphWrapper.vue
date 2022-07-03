@@ -192,6 +192,27 @@ Delete (cmd + 0)"
         };
     };
     
+    // CustomMethodObject
+    window.CustomMethodObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Method';
+        this.identifier = identifier || 'Method ';
+        this.name = name || 'New Method ';
+        this.type = type || 'Method';
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+
+    // CustomSupportMethodObject
+    window.CustomSupportMethodObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Method';
+        this.identifier = identifier || 'Method';
+        this.name = name || 'New Method';
+        this.type = type || 'Support Method';
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
 
     // CustomCommunicativeInteractionObject
     window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
@@ -580,7 +601,7 @@ Delete (cmd + 0)"
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
                     let sac = new window.CustomSupportActorObject();
-                    let sac1 = new window.CustomSupportActorObject();
+                    let sac1 = new window.CustomSupportMethodObject();
                     model.beginUpdate();
                     try {                        
                         v.setValue(obj);
@@ -697,7 +718,7 @@ Delete (cmd + 0)"
                 // Specialised Communicative Event concept wrapper                
 
                 let specialisedCommunicativeEventWrapper = document.createElement('div');
-                /* specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
+                 specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
                 specialisedCommunicativeEventWrapper.style.margin = '0px 5px 20px 5px';
                 specialisedCommunicativeEventWrapper.style.width = '75px';
                 specialisedCommunicativeEventWrapper.style.height = '75px';
@@ -711,7 +732,7 @@ Delete (cmd + 0)"
 
                 let titleSpecialisedCommunicativeEventWrapper = document.createElement('div');
                 titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>';
-                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);    */                                        
+                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);                                            
 
                 // Communicative Event concept wrapper
                 let communicativeEventWrapper = document.createElement('div');

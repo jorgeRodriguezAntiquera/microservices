@@ -20,9 +20,9 @@
         <div id="sidebar">
             <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;" title=
             "Created by Emilio Miranda from Universidad de Valparaíso in Chile">                
-                <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px;" 
-                >Communicational Analysis Modeler</a>
-                <i class='fas fa-project-diagram' style="font-size: 16px; position: relative; bottom: 45px; color: white;"></i>
+                <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px; font-size:xx-small" 
+                >Microservices Modeling Tool</a>
+                <!-- <i class='fas fa-project-diagram' style="font-size: 10px; position: relative; bottom: 35px; color: white;"></i> -->
             </a>
             <div id="edit" style="margin-bottom: 15px; margin-right: 5px; margin-top: 10px; height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: left;">
                 <strong style="white-space: pre-wrap; color: white;" title=
@@ -172,10 +172,10 @@ Delete (cmd + 0)"
     
     // CustomActorObject
     window.CustomActorObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Actor';
-        this.identifier = identifier || 'Actor ';
-        this.name = name || 'New Actor ';
-        this.type = type || 'Actor';
+        this.definition = definition || 'Atributte';
+        this.identifier = identifier || 'Atributte ';
+        this.name = name || 'New Atributte ';
+        this.type = type || 'Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -183,20 +183,21 @@ Delete (cmd + 0)"
 
     // CustomSupportActorObject
     window.CustomSupportActorObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Actor';
-        this.identifier = identifier || 'Actor';
-        this.name = name || 'New Actor';
-        this.type = type || 'Support Actor';
+        this.definition = definition || 'Atributte';
+        this.identifier = identifier || 'Atributte';
+        this.name = name || 'New Atributte';
+        this.type = type || 'Support Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
+    
 
     // CustomCommunicativeInteractionObject
     window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
         this.definition = definition || 'Interaction';
-        this.identifier = identifier || 'CI';
-        this.name = name || 'New CI';
+        this.identifier = identifier || 'Class';
+        this.name = name || 'New Class';
         this.type = type || 'Communicative Interaction';
         this.messageStructure = {
             name: "New Structure",
@@ -226,8 +227,8 @@ Delete (cmd + 0)"
     linkedReaction) {
         this.definition = definition || 'Event';
         this.reference = reference || 'Event Type 1';
-        this.identifier = identifier || 'CE ';
-        this.name = name || 'New CE ';
+        this.identifier = identifier || 'Class ';
+        this.name = name || 'New Class ';
         this.type = type || 'Communicative Event';
         this.goals = goals || '';
         this.description = description || '';
@@ -696,7 +697,7 @@ Delete (cmd + 0)"
                 // Specialised Communicative Event concept wrapper                
 
                 let specialisedCommunicativeEventWrapper = document.createElement('div');
-                specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
+                /* specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
                 specialisedCommunicativeEventWrapper.style.margin = '0px 5px 20px 5px';
                 specialisedCommunicativeEventWrapper.style.width = '75px';
                 specialisedCommunicativeEventWrapper.style.height = '75px';
@@ -710,7 +711,7 @@ Delete (cmd + 0)"
 
                 let titleSpecialisedCommunicativeEventWrapper = document.createElement('div');
                 titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>';
-                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);                                           
+                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);    */                                        
 
                 // Communicative Event concept wrapper
                 let communicativeEventWrapper = document.createElement('div');
@@ -727,12 +728,12 @@ Delete (cmd + 0)"
                 sidebar.appendChild(communicativeEventWrapper);
 
                 let titleCommunicativeEventWrapper = document.createElement('div');
-                titleCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Communicative Event</div>';
+                titleCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Class</div>';
                 sidebar.appendChild(titleCommunicativeEventWrapper);    
                 
                 // Actor concept wrapper                
                 let actorWrapper = document.createElement('div');
-                actorWrapper.style.cursor = 'pointer';
+                /* actorWrapper.style.cursor = 'pointer';
                 actorWrapper.style.margin = '0px 5px 20px 5px';
                 actorWrapper.style.width = '75px';
                 actorWrapper.style.height = '75px';
@@ -746,11 +747,11 @@ Delete (cmd + 0)"
 
                 let titleActorWrapper = document.createElement('div');
                 titleActorWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Actor</div>';
-                sidebar.appendChild(titleActorWrapper);                
+                sidebar.appendChild(titleActorWrapper);  */               
 
                 // End concept wrapper                
                 let endWrapper = document.createElement('div');
-                endWrapper.style.cursor = 'pointer';
+               /*  endWrapper.style.cursor = 'pointer';
                 endWrapper.style.margin = '0px 5px 20px 5px';
                 endWrapper.style.width = '60px';
                 endWrapper.style.height = '60px';
@@ -764,11 +765,11 @@ Delete (cmd + 0)"
 
                 let titleEndWrapper = document.createElement('div');
                 titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">End</div>';
-                sidebar.appendChild(titleEndWrapper);     
+                sidebar.appendChild(titleEndWrapper);      */
             
                 // Start concept wrapper                
                 let startWrapper = document.createElement('div');
-                startWrapper.style.cursor = 'pointer';
+                /* startWrapper.style.cursor = 'pointer';
                 startWrapper.style.margin = '0px 5px 20px 5px';
                 startWrapper.style.width = '60px';
                 startWrapper.style.height = '60px';
@@ -782,7 +783,7 @@ Delete (cmd + 0)"
 
                 let titleStartWrapper = document.createElement('div');
                 titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>';
-                sidebar.appendChild(titleStartWrapper);     
+                sidebar.appendChild(titleStartWrapper); */     
 
                 // Creates the image which is used as the drag icon (preview)
 

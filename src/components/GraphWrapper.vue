@@ -67,7 +67,7 @@ Delete (cmd + 0)"
 
 // MXGRAPH objects creation
     const {
-        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxActor, mxGraph, mxGeometry, mxCell,
+        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxRhombus,mxLine, mxActor, mxGraph, mxGeometry, mxCell,
         mxImage, mxDivResizer, mxObjectCodec, mxCodecRegistry, mxConnectionHandler,
         mxClipboard, mxRubberband, mxGraphModel,  mxCodec, mxConstants,mxUndoManager, mxMorphing, mxFastOrganicLayout,
         mxEdgeStyle, mxWindow, mxKeyHandler, mxLog, mxShape, mxConnectionConstraint, mxPoint,
@@ -80,6 +80,8 @@ Delete (cmd + 0)"
     window.mxActor = mxActor;
     window.mxRectangle = mxRectangle;    
     window.mxEllipse = mxEllipse;
+    window.mxRhombus = mxRhombus;
+    window.mxLine = mxLine;
     window.mxGraph = mxGraph;
     window.mxEvent = mxEvent;
     window.mxGeometry = mxGeometry;
@@ -209,6 +211,29 @@ Delete (cmd + 0)"
         this.identifier = identifier || 'Method';
         this.name = name || 'New Method';
         this.type = type || 'Support Method';
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+
+
+    // CustomCompositionObject
+    window.CustomCompositionObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Composition';
+        this.identifier = identifier || 'Composition ';
+        this.name = name || 'New Composition ';
+        this.type = type || 'Composition';
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+
+    // CustomSupportCompositionObject
+    window.CustomSupportCompositionObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Composition';
+        this.identifier = identifier || 'Composition';
+        this.name = name || 'New Composition';
+        this.type = type || 'Support Composition';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -520,11 +545,14 @@ Delete (cmd + 0)"
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
+                        let sac = new window.CustomSupportMethodObject();
                         v.geometry.x = pt.x;
                         v.geometry.y = pt.y;
                         v.geometry.width = 60;
                         v.geometry.height = 60;
-                        v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
+                        v.style='shape=line;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
+                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=1;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=black;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
+                         v1.setConnectable(false);
                         graph.addCell(v, parent);
 
                     } finally {
@@ -619,6 +647,44 @@ Delete (cmd + 0)"
                         
 
                         //rounded=0;whiteSpace=wrap;html=1;autosize=1;resizable=0;opacity=50; arcSize=10;rounded=1;
+                        v1.setConnectable(false);
+                        v2.setConnectable(false);                        
+                        graph.addCell(v, parent);
+
+                    } finally {
+                        model.endUpdate();
+                    }
+                    graph.setSelectionCell(v);
+                    
+                };   
+                
+                let dragCallBackFunctComposition = function (graph, evt, obj) {
+
+                    graph.recursiveResize = true;
+                    
+                    let pt = graph.getPointForEvent(evt);
+
+                    let parent = graph.getDefaultParent();                    
+                    let model = graph.getModel();                    
+                    let v = model.cloneCell(prototype);
+                    let sac = new window.CustomSupportCompositionObject();
+                    model.beginUpdate();
+                    try {                        
+                        v.setValue(obj);
+                        v.geometry.x = pt.x;
+                        v.geometry.y = pt.y;
+                        v.geometry.width = 180;
+                        
+                        v.geometry.height = 175;
+                        v.style='shape=rhombus;fillColor=#00a8f3;arcSize=3;rounded=1;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
+                        
+                        //ADD Support Actor as vertex inside the Communicative Event Vertex
+                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+                        let v2 = graph.insertVertex(v, null, sac1, 0, 115, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+
+                        
+
+                        //rounded=0;whiteSpace=wrap;html=1;autosize=1;resizable=0;opacity=50; arcSize=10;rounded=1;
                         //v1.setConnectable(false);
                         //v2.setConnectable(false);                        
                         graph.addCell(v, parent);
@@ -628,7 +694,7 @@ Delete (cmd + 0)"
                     }
                     graph.setSelectionCell(v);
                     
-                };                
+                };        
 
                 let dragCallBackFunctSpecialisedCommunicativeEvent = function (graph, evt, obj) {
 
@@ -790,7 +856,7 @@ Delete (cmd + 0)"
             
                 // Start concept wrapper                
                 let startWrapper = document.createElement('div');
-                /* startWrapper.style.cursor = 'pointer';
+                startWrapper.style.cursor = 'pointer';
                 startWrapper.style.margin = '0px 5px 20px 5px';
                 startWrapper.style.width = '60px';
                 startWrapper.style.height = '60px';
@@ -804,7 +870,7 @@ Delete (cmd + 0)"
 
                 let titleStartWrapper = document.createElement('div');
                 titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>';
-                sidebar.appendChild(titleStartWrapper); */     
+                sidebar.appendChild(titleStartWrapper);      
 
                 // Creates the image which is used as the drag icon (preview)
 

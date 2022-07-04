@@ -18,8 +18,7 @@
         </div>        
         <!-- div for sidebar-->
         <div id="sidebar">
-            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;" title=
-            "Created by Emilio Miranda from Universidad de Valparaíso in Chile">                
+            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;">                
                 <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px; font-size:xx-small" 
                 >Microservices Modeling Tool</a>
                 <!-- <i class='fas fa-project-diagram' style="font-size: 10px; position: relative; bottom: 35px; color: white;"></i> -->
@@ -67,11 +66,11 @@ Delete (cmd + 0)"
 
 // MXGRAPH objects creation
     const {
-        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxRhombus,mxLine, mxActor, mxGraph, mxGeometry, mxCell,
+        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxRhombus,mxLine, mxActor, mxGraph, mxGeometry, mxCell, mxCellRenderer,
         mxImage, mxDivResizer, mxObjectCodec, mxCodecRegistry, mxConnectionHandler,
         mxClipboard, mxRubberband, mxGraphModel,  mxCodec, mxConstants,mxUndoManager, mxMorphing, mxFastOrganicLayout,
         mxEdgeStyle, mxWindow, mxKeyHandler, mxLog, mxShape, mxConnectionConstraint, mxPoint,
-        mxPolyline, mxPerimeter, mxPrintPreview, mxMultiplicity, mxDragSource, mxEdgeHandler, mxGraphHandler
+        mxPolyline, mxPerimeter, mxPrintPreview, mxMultiplicity, mxDragSource, mxEdgeHandler, mxGraphHandler, mxGraphView, mxHandle, mxVertexHandler, mxCellTracker,mxCellMarker,
     } = mxgraph(graphConfig);
 
 // making MXGRAPH objects available for VUE
@@ -114,8 +113,18 @@ Delete (cmd + 0)"
     window.mxDragSource = mxDragSource;
     window.mxEdgeHandler = mxEdgeHandler;
     window.mxGraphHandler = mxGraphHandler;
-
+    window.mxCellRenderer = mxCellRenderer;
+    window.mxGraphView = mxGraphView;
+    window.mxHandle = mxHandle;
+    window.mxVertexHandler = mxVertexHandler;
+    /* window.mxCellTracker = mxCellTracker;
+    window.mxCellMarker = mxCellMarker; */
+    mxVertexHandler.prototype.rotationRaster = true;
+    mxVertexHandler.prototype.rotationCursor = 'crosshair';
+    mxVertexHandler.prototype.livePreview = true;
+    mxVertexHandler.prototype.rotationEnabled = true;
     
+
     //CONSTANTS
     // Cells selection color
     mxConstants.HANDLE_FILLCOLOR = '#C0C0C0'; // Color cuadrado de selección en centro
@@ -551,7 +560,7 @@ Delete (cmd + 0)"
                         v.geometry.width = 60;
                         v.geometry.height = 60;
                         v.style='shape=line;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
-                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=1;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=black;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
+                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=0;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=black;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
                          v1.setConnectable(false);
                         graph.addCell(v, parent);
 
@@ -581,7 +590,10 @@ Delete (cmd + 0)"
                         v.geometry.y = pt.y;
                         v.geometry.width = 50;
                         v.geometry.height = 50;
-                        v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=15;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=bottom;verticalAlign=middle;';
+                        v.style='shape=line;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
+                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=1;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
+                         v1.setConnectable(false);
+                        graph.addCell(v, parent);
                         graph.addCell(v, parent);
 
                     } finally {
@@ -838,7 +850,7 @@ Delete (cmd + 0)"
 
                 // End concept wrapper                
                 let endWrapper = document.createElement('div');
-               /*  endWrapper.style.cursor = 'pointer';
+                endWrapper.style.cursor = 'pointer';
                 endWrapper.style.margin = '0px 5px 20px 5px';
                 endWrapper.style.width = '60px';
                 endWrapper.style.height = '60px';
@@ -852,7 +864,7 @@ Delete (cmd + 0)"
 
                 let titleEndWrapper = document.createElement('div');
                 titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">End</div>';
-                sidebar.appendChild(titleEndWrapper);      */
+                sidebar.appendChild(titleEndWrapper);
             
                 // Start concept wrapper                
                 let startWrapper = document.createElement('div');
@@ -1071,7 +1083,7 @@ Delete (cmd + 0)"
                     // Adds sidebar icon for the propertie object
                     let customObject = new window.CustomUserObject();
 
-                    let object = new mxCell(customObject, new mxGeometry(0, 0,75, 75), '');
+                    let object = new mxCell(customObject, new mxGeometry(0, 0,75, 75), '', mxVertexHandler());
                     object.setVertex(true);
                     object.setConnectable(true);
 

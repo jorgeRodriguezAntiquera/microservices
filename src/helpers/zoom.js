@@ -41,7 +41,7 @@ function zoom(graph){
     
     buttonZoomOut.style.position = 'absolute';    
     buttonZoomOut.style.top = '27px';
-    buttonZoomOut.style.right = '4px';
+    buttonZoomOut.style.right = '80px';
     buttonZoomOut.style.width = '73px';
     buttonZoomOut.setAttribute("class", "button");
 

@@ -18,7 +18,7 @@
         </div>        
         <!-- div for sidebar-->
         <div id="sidebar">
-            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;">                
+            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;background-color: #C0C0C0;">                
                 <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px; font-size:xx-small" 
                 >Microservices Modeling Tool</a>
                 <!-- <i class='fas fa-project-diagram' style="font-size: 10px; position: relative; bottom: 35px; color: white;"></i> -->
@@ -146,6 +146,33 @@ Delete (cmd + 0)"
 
     //CUSTOM DATA STRUCTURES (for each node and relationship)
  
+
+// CustomCommunicativeEventObject
+    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
+    temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
+    linkedReaction) {
+        this.definition = definition || 'Event';
+        this.reference = reference || 'Event Type 1';
+        this.identifier = identifier || 'Class ';
+        this.name = name || 'New Class ';
+        this.type = type || 'Communicative Event';
+        this.goals = goals || '';
+        this.description = description || '';
+        this.channel = channel || '';
+        this.temporalRestrictions = temporalRestrictions || '';
+        this.frequency = frequency || '';
+        this.contextConstraints = contextConstraints || '';
+        this.structuralConstraints = structuralConstraints || '';
+        this.treatment = treatment || '';
+        this.linkedCommunication = linkedCommunication || '';
+        this.linkedReaction = linkedReaction || '';            
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };   
+
+
+
     // CustomUserObject
     window.CustomUserObject = function (identifier, name, type) {
         this.identifier = identifier || 'Identifier';
@@ -751,6 +778,16 @@ Delete (cmd + 0)"
                 var numberSCE = 0;
 
                 // Passes type of node depending on dragged icon
+
+                let dragCommunicativeEventCallBackFunct = function (graph, evt) {
+                    let obj = new window.CustomCommunicativeEventObject();
+                    numberCE = numberCE+1;
+                    obj.name = obj.name+numberCE;
+                    obj.identifier = obj.identifier+numberCE;
+                    dragCallBackFunctCommunicativeEvent(graph, evt, obj);
+                };
+
+
                 let dragStartCallBackFunct = function (graph, evt) {                    
                     let obj = new window.CustomStartObject();
                     numberStart = numberStart+1;
@@ -775,13 +812,7 @@ Delete (cmd + 0)"
                     dragCallBackFunctActor(graph, evt, obj);
                 };                
 
-                let dragCommunicativeEventCallBackFunct = function (graph, evt) {
-                    let obj = new window.CustomCommunicativeEventObject();
-                    numberCE = numberCE+1;
-                    obj.name = obj.name+numberCE;
-                    obj.identifier = obj.identifier+numberCE;
-                    dragCallBackFunctCommunicativeEvent(graph, evt, obj);
-                };
+                
 
                 let dragSpecialisedCommunicativeEventCallBackFunct = function (graph, evt) {
                     let obj = new window.CustomSpecialisedCommunicativeEventObject();
@@ -851,19 +882,21 @@ Delete (cmd + 0)"
                 // End concept wrapper                
                 let endWrapper = document.createElement('div');
                 endWrapper.style.cursor = 'pointer';
-                endWrapper.style.margin = '0px 5px 20px 5px';
-                endWrapper.style.width = '60px';
-                endWrapper.style.height = '60px';
+                endWrapper.style.margin = '0px 35px 20px 35px';
+                endWrapper.style.padding = '0px 10px 0px 10px';
+                endWrapper.style.width = '30px';
+                endWrapper.style.height = '30px';
                 endWrapper.style.textAlign = 'center';
                 endWrapper.style.display = 'flex';
                 endWrapper.style.flexWrap = 'wrap';
                 endWrapper.style.alignItems = 'center';
                 endWrapper.style.justifyContent = 'center';
-                endWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/end.png></div>';
+                endWrapper.style.width= "30%";
+                endWrapper.innerHTML = '<div><img  style = "margin: 0px 20px 0px 0px;"src='+mxImageBasePath +'/aggregation.png></div>';
                 sidebar.appendChild(endWrapper);  
 
                 let titleEndWrapper = document.createElement('div');
-                titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">End</div>';
+                titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Aggregation</div>';
                 sidebar.appendChild(titleEndWrapper);
             
                 // Start concept wrapper                
@@ -877,14 +910,17 @@ Delete (cmd + 0)"
                 startWrapper.style.flexWrap = 'wrap';
                 startWrapper.style.alignItems = 'center';
                 startWrapper.style.justifyContent = 'center';
-                startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/start.png></div>';
+                startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/composition.png></div>';
                 sidebar.appendChild(startWrapper);  
 
                 let titleStartWrapper = document.createElement('div');
-                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>';
+                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Composition</div>';
                 sidebar.appendChild(titleStartWrapper);      
 
                 // Creates the image which is used as the drag icon (preview)
+
+                let dragImageCommunicativeEvent = communicativeEventWrapper.cloneNode(true);
+                mxUtils.makeDraggable(communicativeEventWrapper, graph, dragCommunicativeEventCallBackFunct, dragImageCommunicativeEvent);
 
                 let dragImageStart = startWrapper.cloneNode(true);
                 mxUtils.makeDraggable(startWrapper, graph, dragStartCallBackFunct, dragImageStart);
@@ -895,8 +931,7 @@ Delete (cmd + 0)"
                 let dragImageActor = actorWrapper.cloneNode(true);
                 mxUtils.makeDraggable(actorWrapper, graph, dragActorCallBackFunct, dragImageActor);
 
-                let dragImageCommunicativeEvent = communicativeEventWrapper.cloneNode(true);
-                mxUtils.makeDraggable(communicativeEventWrapper, graph, dragCommunicativeEventCallBackFunct, dragImageCommunicativeEvent);
+                
 
                 let dragImageSpecialisedCommunicativeEvent = specialisedCommunicativeEventWrapper.cloneNode(true);
                 mxUtils.makeDraggable(specialisedCommunicativeEventWrapper, graph, dragSpecialisedCommunicativeEventCallBackFunct, dragImageSpecialisedCommunicativeEvent);                
@@ -936,7 +971,7 @@ Delete (cmd + 0)"
                     sidebar.style.flexDirection = 'column-reverse';
                     sidebar.style.alignItems = 'center';
                     sidebar.style.justifyContent = 'flex-end';
-                    sidebar.style.backgroundColor = '#202020';
+                    sidebar.style.backgroundColor = '#313131';
                     
                     // Rightbar configuration
                     let rightbar = document.getElementById('rightbar');
@@ -954,7 +989,7 @@ Delete (cmd + 0)"
                     rightbar.style.flexDirection = 'column';
                     rightbar.style.alignItems = 'center';
                     rightbar.style.justifyContent = 'space-between';
-                    rightbar.style.backgroundColor = '#202020';
+                    rightbar.style.backgroundColor = '#313131';
 
                     if (mxClient.IS_QUIRKS) {
                         document.body.style.overflow = 'hidden';

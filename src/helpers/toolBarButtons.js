@@ -1049,11 +1049,11 @@ function toolBarButtons(graph, modelDetailsP){
     
     buttonLoad.style.position = 'absolute';    
     buttonLoad.style.top = '4px';
-    buttonLoad.style.right = '4px';
+    buttonLoad.style.right = '80px';
     buttonLoad.style.width = '73px';
     buttonLoad.setAttribute("class", "button");
 
-    let buttonPreview = document.body.appendChild(mxUtils.button('Print', function()
+    /* let buttonPreview = document.body.appendChild(mxUtils.button('Print', function()
     {        
         var preview = new mxPrintPreview(graph, 1);
         preview.title = 'Print';
@@ -1083,10 +1083,10 @@ function toolBarButtons(graph, modelDetailsP){
     buttonPreview.style.top = '4px';
     buttonPreview.style.right = '82px';
     buttonPreview.style.width = '72px';
-    buttonPreview.setAttribute("class", "button");
+    buttonPreview.setAttribute("class", "button"); */
 	
 
-    let buttonEvaluate = document.body.appendChild(mxUtils.button('Evaluate', function()
+    /* let buttonEvaluate = document.body.appendChild(mxUtils.button('Evaluate', function()
     {        
         var preview = new mxPrintPreview(graph, 1);
         preview.title = 'Evaluate';
@@ -1115,7 +1115,7 @@ function toolBarButtons(graph, modelDetailsP){
     buttonEvaluate.style.top = '27px';
     buttonEvaluate.style.right = '82px';
     buttonEvaluate.style.width = '72px';  // 220px toda la barra
-    buttonEvaluate.setAttribute("class", "button");
+    buttonEvaluate.setAttribute("class", "button"); */
 
 
 

@@ -123,7 +123,7 @@ div.mxTooltip {
 	position: absolute;
 	cursor: default;
 	padding: 4px;
-	color: black;
+	color: bred;
 }
 div.mxPopupMenu {
 	-webkit-box-shadow: 3px 3px 12px #C0C0C0;
@@ -146,7 +146,7 @@ tr.mxPopupMenuItem {
 	cursor: pointer;
 }
 tr.mxPopupMenuItemHover {
-	background-color: #000066;
+	background-color: #0077FF;
 	color: #FFFFFF;
 	cursor: pointer;
 }

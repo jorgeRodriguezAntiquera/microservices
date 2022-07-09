@@ -3,12 +3,12 @@
         <!-- div for modeler-->
         <div id="container"></div>
         <!-- div for rightbar-->
-        <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
+        <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;  display: flex;
     align-items: top;">            
-            <div id="modelform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;">
+            <div id="modelform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">
                 <ModelDetailsForm ref="form" @change="changeModelDetails" :modelDetails="modelDetails"/>                       
             </div>
-            <div id="editform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
+            <div id="editform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;  display: flex;
     align-items: top;">
                 <EditForm ref="form" @change="changeObjectValues" :cell-data="currentCell"/> 
             </div>
@@ -23,7 +23,7 @@
                 >Microservices Modeling Tool</a>
                 <!-- <i class='fas fa-project-diagram' style="font-size: 10px; position: relative; bottom: 35px; color: white;"></i> -->
             </a>
-            <div id="edit" style="margin-bottom: 15px; margin-right: 5px; margin-top: 10px; height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: left;">
+            <div id="edit" style="margin-bottom: 15px; margin-right: 5px; margin-top: 10px; height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: left;">
                 <strong style="white-space: pre-wrap; color: white;" title=
 "Cut (cmd + x)
 Copy (cmd + c)
@@ -49,7 +49,7 @@ Delete (cmd + 0)"
     import ModelDetailsForm from "./ModelDetailsForm";    
     import clipboardInit from "../helpers/clipboard";
     import undo from "../helpers/undo";    
-    import toolBarButtons from "../helpers/toolBarButtons";
+    import toolBarButtons from '../helpers/toolBarButtons';
     import validation from "../helpers/validation";
     import zoom from "../helpers/zoom";
 
@@ -146,9 +146,9 @@ Delete (cmd + 0)"
 
     //CUSTOM DATA STRUCTURES (for each node and relationship)
  
-
+    // UML Class Block
 // CustomCommunicativeEventObject
-    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
+    window.CustomClassBlockObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
         this.definition = definition || 'Event';
@@ -185,11 +185,12 @@ Delete (cmd + 0)"
 
     // CustomStartObject
     window.CustomStartObject = function (definition, reference, identifier, name, type) {
-        this.definition = definition || 'Start';
-        this.identifier = identifier || 'Start';
+        
+         this.definition = definition || 'Composition';
+        this.identifier = identifier || 'Composition';
         this.reference = reference || 'Event Type 4';
-        this.name = name || 'Start ';
-        this.type = type || 'Start';
+        this.name = name || 'Composition ';
+        this.type = type || 'Composition';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -197,11 +198,11 @@ Delete (cmd + 0)"
 
     // CustomEndObject
     window.CustomEndObject = function (definition, reference, identifier, name, type) {
-        this.definition = definition || 'End';
-        this.identifier = identifier || 'End';
+        this.definition = definition || 'Aggregation';
+        this.identifier = identifier || 'Aggregation';
         this.reference = reference || 'Event Type 4';
-        this.name = name || 'End ';
-        this.type = type || 'End';
+        this.name = name || 'Aggregation ';
+        this.type = type || 'Aggregation';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -304,7 +305,7 @@ Delete (cmd + 0)"
     };
     
     // CustomCommunicativeEventObject
-    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
+    window.CustomClassBlockObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
         this.definition = definition || 'Event';
@@ -658,7 +659,7 @@ Delete (cmd + 0)"
                     
                 };
 
-                let dragCallBackFunctCommunicativeEvent = function (graph, evt, obj) {
+                let dragCallBackFunctClassBlock = function (graph, evt, obj) {
 
                     graph.recursiveResize = true;
                     
@@ -674,14 +675,14 @@ Delete (cmd + 0)"
                         v.setValue(obj);
                         v.geometry.x = pt.x;
                         v.geometry.y = pt.y;
-                        v.geometry.width = 180;
+                        v.geometry.width = 80;
                         
-                        v.geometry.height = 175;
-                        v.style='shape=rectangle;fillColor=#00a8f3;arcSize=3;rounded=1;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
+                        v.geometry.height = 30;
+                        v.style='shape=rectangle;fillColor=white;arcSize=3;rounded=0;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
                         
                         //ADD Support Actor as vertex inside the Communicative Event Vertex
-                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
-                        let v2 = graph.insertVertex(v, null, sac1, 0, 115, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+                        let v2 = graph.insertVertex(v, null, sac1, 0, 115, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
 
                         
 
@@ -779,12 +780,12 @@ Delete (cmd + 0)"
 
                 // Passes type of node depending on dragged icon
 
-                let dragCommunicativeEventCallBackFunct = function (graph, evt) {
-                    let obj = new window.CustomCommunicativeEventObject();
+                let dragClassBlockCallBackFunct = function (graph, evt) {
+                    let obj = new window.CustomClassBlockObject();
                     numberCE = numberCE+1;
                     obj.name = obj.name+numberCE;
                     obj.identifier = obj.identifier+numberCE;
-                    dragCallBackFunctCommunicativeEvent(graph, evt, obj);
+                    dragCallBackFunctClassBlock(graph, evt, obj);
                 };
 
 
@@ -826,8 +827,8 @@ Delete (cmd + 0)"
 
                 // Specialised Communicative Event concept wrapper                
 
-                let specialisedCommunicativeEventWrapper = document.createElement('div');
-                 specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
+                //let specialisedCommunicativeEventWrapper = document.createElement('div');
+                 /* specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
                 specialisedCommunicativeEventWrapper.style.margin = '0px 5px 20px 5px';
                 specialisedCommunicativeEventWrapper.style.width = '75px';
                 specialisedCommunicativeEventWrapper.style.height = '75px';
@@ -841,28 +842,28 @@ Delete (cmd + 0)"
 
                 let titleSpecialisedCommunicativeEventWrapper = document.createElement('div');
                 titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>';
-                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);                                            
+                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);   */                                          
 
                 // Communicative Event concept wrapper
-                let communicativeEventWrapper = document.createElement('div');
-                communicativeEventWrapper.style.cursor = 'pointer';
-                communicativeEventWrapper.style.margin = '0px 5px 20px 5px';
-                communicativeEventWrapper.style.width = '75px';
-                communicativeEventWrapper.style.height = '75px';
-                communicativeEventWrapper.style.textAlign = 'center';
-                communicativeEventWrapper.style.display = 'flex';
-                communicativeEventWrapper.style.flexWrap = 'wrap';
-                communicativeEventWrapper.style.alignItems = 'center';
-                communicativeEventWrapper.style.justifyContent = 'center';
-                communicativeEventWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/communicative_event.png></div>';
-                sidebar.appendChild(communicativeEventWrapper);
+                let ClassBlockWrapper = document.createElement('div');
+                ClassBlockWrapper.style.cursor = 'pointer';
+                ClassBlockWrapper.style.margin = '0px 5px 20px 5px';
+                ClassBlockWrapper.style.width = '75px';
+                ClassBlockWrapper.style.height = '75px';
+                ClassBlockWrapper.style.textAlign = 'center';
+                ClassBlockWrapper.style.display = 'flex';
+                ClassBlockWrapper.style.flexWrap = 'wrap';
+                ClassBlockWrapper.style.alignItems = 'center';
+                ClassBlockWrapper.style.justifyContent = 'center';
+                ClassBlockWrapper.innerHTML = '<div><img  src='+mxImageBasePath +'/class_block.png></div>';
+                sidebar.appendChild(ClassBlockWrapper);
 
-                let titleCommunicativeEventWrapper = document.createElement('div');
-                titleCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Class</div>';
-                sidebar.appendChild(titleCommunicativeEventWrapper);    
+                let titleClassBlockWrapper = document.createElement('div');
+                titleClassBlockWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">Class</div>';
+                sidebar.appendChild(titleClassBlockWrapper);    
                 
                 // Actor concept wrapper                
-                let actorWrapper = document.createElement('div');
+                //let actorWrapper = document.createElement('div');
                 /* actorWrapper.style.cursor = 'pointer';
                 actorWrapper.style.margin = '0px 5px 20px 5px';
                 actorWrapper.style.width = '75px';
@@ -880,8 +881,8 @@ Delete (cmd + 0)"
                 sidebar.appendChild(titleActorWrapper);  */               
 
                 // End concept wrapper                
-                let endWrapper = document.createElement('div');
-                endWrapper.style.cursor = 'pointer';
+                //let endWrapper = document.createElement('div');
+               /*  endWrapper.style.cursor = 'pointer';
                 endWrapper.style.margin = '0px 35px 20px 35px';
                 endWrapper.style.padding = '0px 10px 0px 10px';
                 endWrapper.style.width = '30px';
@@ -892,15 +893,15 @@ Delete (cmd + 0)"
                 endWrapper.style.alignItems = 'center';
                 endWrapper.style.justifyContent = 'center';
                 endWrapper.style.width= "30%";
-                endWrapper.innerHTML = '<div><img  style = "margin: 0px 20px 0px 0px;"src='+mxImageBasePath +'/aggregation.png></div>';
+                endWrapper.innerHTML = '<div><img  style = "margin: 0px 20px 0px px;"src='+mxImageBasePath +'/aggregation.png></div>';
                 sidebar.appendChild(endWrapper);  
 
                 let titleEndWrapper = document.createElement('div');
                 titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Aggregation</div>';
-                sidebar.appendChild(titleEndWrapper);
+                sidebar.appendChild(titleEndWrapper); */
             
                 // Start concept wrapper                
-                let startWrapper = document.createElement('div');
+               /*  let startWrapper = document.createElement('div');
                 startWrapper.style.cursor = 'pointer';
                 startWrapper.style.margin = '0px 5px 20px 5px';
                 startWrapper.style.width = '60px';
@@ -915,12 +916,12 @@ Delete (cmd + 0)"
 
                 let titleStartWrapper = document.createElement('div');
                 titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Composition</div>';
-                sidebar.appendChild(titleStartWrapper);      
+                sidebar.appendChild(titleStartWrapper);   */    
 
                 // Creates the image which is used as the drag icon (preview)
 
-                let dragImageCommunicativeEvent = communicativeEventWrapper.cloneNode(true);
-                mxUtils.makeDraggable(communicativeEventWrapper, graph, dragCommunicativeEventCallBackFunct, dragImageCommunicativeEvent);
+                let dragImageClassBlock = ClassBlockWrapper.cloneNode(true);
+                mxUtils.makeDraggable(ClassBlockWrapper, graph, dragClassBlockCallBackFunct, dragImageClassBlock);
 
                 let dragImageStart = startWrapper.cloneNode(true);
                 mxUtils.makeDraggable(startWrapper, graph, dragStartCallBackFunct, dragImageStart);
@@ -971,7 +972,7 @@ Delete (cmd + 0)"
                     sidebar.style.flexDirection = 'column-reverse';
                     sidebar.style.alignItems = 'center';
                     sidebar.style.justifyContent = 'flex-end';
-                    sidebar.style.backgroundColor = '#313131';
+                    sidebar.style.backgroundColor = '#C2C2C2';
                     
                     // Rightbar configuration
                     let rightbar = document.getElementById('rightbar');

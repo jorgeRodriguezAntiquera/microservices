@@ -53,7 +53,7 @@
                 <div style="display: flex;">
                     <input @focus="$event.target.select()" type="text" placeholder="Name" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.name"/>
-                           
+                           <node :node="cellData.value.messageStructure" no-remove style="margin-top: -5px;"/>
                 </div>
 
             </div>
@@ -67,7 +67,7 @@
         </div>
         
         </div>
-        <!-- <div v-if="cellData && (cellData.value.definition == 'Event') && cellData.value">
+        <div v-if="cellData && (cellData.value.definition == 'Event') && cellData.value">
             <div>
                 <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                     Goals:
@@ -168,7 +168,7 @@
                 </div>                                               
             </div>
 
-        </div> -->
+        </div>
 
         <div style="text-align: center; color: #C0C0C0; line-height: 500px;" v-else>
             <div v-if="cellData && (cellData.value.definition !== 'Event') && cellData.value">

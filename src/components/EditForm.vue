@@ -53,7 +53,7 @@
                 <div style="display: flex;">
                     <input @focus="$event.target.select()" type="text" placeholder="Name" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.name"/>
-                           <node :node="cellData.value.messageStructure" no-remove style="margin-top: -5px;"/>
+                        
                 </div>
 
             </div>

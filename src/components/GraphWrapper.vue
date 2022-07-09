@@ -277,7 +277,7 @@ Delete (cmd + 0)"
     };
 
     // CustomCommunicativeInteractionObject
-    window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
+    window.CustomClassBlockInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
         this.definition = definition || 'Interaction';
         this.identifier = identifier || 'Class';
         this.name = name || 'New Class';
@@ -408,7 +408,7 @@ Delete (cmd + 0)"
                 graph.connectionHandler.addListener(mxEvent.CONNECT, function(sender, evt)
                 {   
                     var edge = evt.getProperty('cell');
-                    let edgevalue = new window.CustomCommunicativeInteractionObject();
+                    let edgevalue = new window.CustomClassBlockInteractionObject();
                     edge.value=edgevalue;
                     
                     //Interacción Comunicativa Entrante
@@ -427,8 +427,8 @@ Delete (cmd + 0)"
                     &&(Object.values(evt.getProperty('cell').target.getValue(Object)).includes("Actor")))
                     {                                         
                         //console.log('Conectando CE o SCE y Actor...');
-                        edgevalue.removeSelection = 0;
-                        edge.style='strokeWidth=2;strokeColor=#a00000;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#a00000;';
+                        /* edgevalue.removeSelection = 0;
+                        edge.style='strokeWidth=2;strokeColor=#a00000;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#a00000;'; */
                     }
 
                    

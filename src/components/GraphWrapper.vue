@@ -49,7 +49,7 @@ Delete (cmd + 0)"
     import ModelDetailsForm from "./ModelDetailsForm";    
     import clipboardInit from "../helpers/clipboard";
     import undo from "../helpers/undo";    
-    import toolBarButtons from '../helpers/toolBarButtons';
+    import toolBarButtons from "../helpers/toolBarButtons";
     import validation from "../helpers/validation";
     import zoom from "../helpers/zoom";
 

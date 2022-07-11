@@ -151,11 +151,11 @@ Delete (cmd + 0)"
     window.CustomClassBlockObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
-        this.definition = definition || 'Event';
+        this.definition = definition || 'Class';
         this.reference = reference || 'Event Type 1';
         this.identifier = identifier || 'Class ';
         this.name = name || 'New Class ';
-        this.type = type || 'Communicative Event';
+        this.type = type || 'Class';
         this.goals = goals || '';
         this.description = description || '';
         this.channel = channel || '';
@@ -221,7 +221,7 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportActorObject = function (definition, identifier, name, type) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
@@ -668,7 +668,7 @@ Delete (cmd + 0)"
                     let parent = graph.getDefaultParent();                    
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
-                    let sac = new window.CustomSupportActorObject();
+                    let sac = new window.CustomSupportAtributteObject();
                     let sac1 = new window.CustomSupportMethodObject();
                     model.beginUpdate();
                     try {                        

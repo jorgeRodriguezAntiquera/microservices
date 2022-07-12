@@ -596,7 +596,7 @@ function toolBarButtons(graph, modelDetailsP){
                                         for (let b = 0; b < onlyActors.length; b++) {
                                             if((onlySCE[a].id == model.specialisedCommunicativeEvents[i].unique)&&
                                             onlyActors[b].id == model.actors[j].unique){
-                                                let ci = new window.CustomClassBlockInteractionObject();
+                                                let ci = new window.CustomCommunicativeInteractionObject();
                                                 ci.identifier = model.communicativeInteractions[index].identifier;
                                                 ci.name = model.communicativeInteractions[index].name;
                                                 ci.type = model.communicativeInteractions[index].type;

@@ -12,7 +12,7 @@
 
             <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">
                 <div style="text-align: center; padding-bottom: 8px;">
-                    <strong style="color: #C0C0C0">Communicative Interaction</strong>
+                    <strong style="color: #C0C0C0">Relation</strong>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
             </div>
 
             <div v-if="cellData && ((cellData.value.reference == 'Event Type 1') || (cellData.value.reference == 'Event Type 3')) && cellData.value">
-                <div style="text-align: center; padding-bottom: 8px;">
+                <div style="text-align: center; margin-top: 5%;">
                     <strong style="color: #C0C0C0">Class</strong>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>            
 
-        <div v-if="cellData && (cellData.value.definition == 'Event') && cellData.value">    
+        <div v-if="cellData && (cellData.value.removeSelection != 1) && cellData.value">    
             <div style="padding-bottom: 5px;">
                 <strong style="color: white;"><i class='fas fa-quote-left'/> General Description</strong>
             </div>
@@ -150,7 +150,7 @@
                     Methods:
                 </div>
                 <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Context Constraints" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.contextConstraints"/>
                 </div>                                               
             </div>

@@ -184,15 +184,7 @@
                            v-model="cellData.value.linkedCommunication"/>
                 </div>                                               
             </div> -->
-            <!-- <div style="padding-top: 5px; padding-bottom: 16px;">
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Linked Reaction:
-                </div>
-                <div style="display: flex; margin-bottom: 7px;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Linked Reaction" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.linkedReaction"/>
-                </div>                                               
-            </div> -->
+            <!--  -->
 
         </div>
 

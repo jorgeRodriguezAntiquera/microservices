@@ -40,13 +40,13 @@
             </div>
 
             <div>
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Identifier:
                 </div>
                 <div style="display: flex;">
                     <input @focus="$event.target.select()" type="text" placeholder="Identifier" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.identifier"/>
-                </div>
+                </div> -->
                 <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                     Name:
                 </div>
@@ -74,7 +74,7 @@
                     Stereotypes:
                 </div>
                 <div style="display: flex;">
-                    <select @focus="$event.target.select()" type="text" placeholder="Goals" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                    <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.goals">
                         <option disabled value="">Please select one</option>
                         <option>None</option>
@@ -109,7 +109,7 @@
 
 
                     <Select @focus="$event.target.select()" type="text" placeholder="Atributte" style="outline: none; pointer-events: auto; width : 50%; margin-left: 5%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                    v-model="cellData.value.temporalRestrictions">
+                    v-model="cellData.value.structuralConstraints">
 
                     <option disabled value="">Please select one</option>
                     <option>int</option>

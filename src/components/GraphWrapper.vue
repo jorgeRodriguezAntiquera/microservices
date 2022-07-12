@@ -848,7 +848,8 @@ Delete (cmd + 0)"
                     rightbar.style.paddingTop = '47px';
                     rightbar.style.top = '0px';                    
                     rightbar.style.bottom = '0px';
-                    rightbar.style.width = '220px';
+                    rightbar.style.width = '820px';
+                    rightbar.style.height='100%';
                     rightbar.style.display = 'flex';
                     rightbar.style.flexDirection = 'column';
                     rightbar.style.alignItems = 'center';

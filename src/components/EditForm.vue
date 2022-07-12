@@ -105,7 +105,7 @@
                 </div> 
                 <div style="display: flex;">
 
-                  <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
+                  <!-- <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
 
 
                     <Select @focus="$event.target.select()" type="text" placeholder="Atributte" style="outline: none; pointer-events: auto; width : 50%; margin-left: 5%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
@@ -119,9 +119,28 @@
                     <option>boolean</option>
                     </select>  
   
-                    
-                    
-                </div>   
+                     -->
+                     <div class="work-experiences">
+                    <div class="form-row" style="display: flex;" v-for="(experience, index) in workExperiences" :key="index">
+          <div class="form-group row-md-6">
+            <div style="padding-top: 5px;">
+            <label>Company</label>
+            <input v-model="experience.company" :name="`workExperiences[${index}][company]`" type="text" class="form-control" placeholder="Company">
+          </div>
+          <div class="form-group row-md-6">
+            <label>Title</label>
+            <input  v-model="experience.title" :name="`workExperiences[${index}][title]`" type="text" class="form-control" placeholder="Title">
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button @click="addExperience" type="button" class="btn btn-secondary">Add experience</button>
+      </div>
+
+                  
                           
             </div>
            <!--  <div style="padding-top: 5px;">
@@ -142,7 +161,7 @@
                            v-model="cellData.value.frequency"/>
                 </div>                                               
             </div> -->
-            <div style="padding-bottom: 5px; padding-top: 7px;">
+            <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-bell'/> Methods</strong>
             </div>
             <div>
@@ -153,7 +172,7 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.contextConstraints"/>
                 </div>                                               
-            </div>
+            </div> -->
             <!-- <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Structural Constraints:
@@ -236,6 +255,14 @@
                 type: Object
             }
         },
+        data: () => ({
+    workExperiences: [
+      {
+        company: "Foxconn",
+        title: "Engineer"
+      }
+    ]
+  }),
         
     
   
@@ -244,7 +271,14 @@
             debounce_change: debounce(function () {
                // Report changes
                 this.$emit('change', this.cellData.value);
-            }, 200)
+            }, 200),
+            addExperience () {
+      this.workExperiences.push({
+        company: '',
+        title: ''
+      })
+    },
+            
         }
        
   
@@ -261,3 +295,12 @@
     
 </script>
 
+<style>
+.work-experiences > div {
+  margin: 20px 0;
+  padding-bottom: 10px;
+}
+.work-experiences > div:not(:last-child) {
+  border-bottom: 1px solid rgb(206, 212, 218);
+}
+</style>

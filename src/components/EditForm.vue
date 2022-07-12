@@ -77,10 +77,14 @@
                     <select @focus="$event.target.select()" type="text" placeholder="Goals" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.goals">
                         <option disabled value="">Please select one</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
+                        <option>None</option>
+                        <option>Entity</option>
+                        <option>ValueObject</option>
+                        <option>Aggregate</option>
+                        <option>Repository</option>
+                        <option>Service</option>
                     </select>
+                    
                 </div>
             </div>
             <div style="padding-top: 5px;">
@@ -93,18 +97,34 @@
                 </div>                                               
             </div>
             <div style="padding-bottom: 5px; padding-top: 7px;">
-                <strong style="color: white;"><i class='fas fa-bell'/> Contact Requirements</strong>
+                <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
             </div>
             <div>
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Channel:
-                </div>
+                <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Name Atributte:
+                </div> -->
                 <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Channel" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.channel"/>
-                </div>                                               
+                    <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                    v-model="cellData.value.channel"/>
+
+
+                    <Select @focus="$event.target.select()" type="text" placeholder="Atributte" style="outline: none; pointer-events: auto; width : 50%; margin-left: 5%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                    v-model="cellData.value.temporalRestrictions">
+
+                    <option disabled value="">Please select one</option>
+                    <option>int</option>
+                    <option>float</option>
+                    <option>double</option>
+                    <option>string</option>
+                    <option>boolean</option>
+                    </select>
+
+
+
+                </div>   
+                                                      
             </div>
-            <div style="padding-top: 5px;">
+           <!--  <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Temporal Restrictions:
                 </div>
@@ -112,8 +132,8 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Temporal Restrictions" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.temporalRestrictions"/>
                 </div>                                               
-            </div>
-            <div style="padding-top: 5px;">
+            </div> -->
+            <!-- <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Frequency:
                 </div>
@@ -121,20 +141,20 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Frequency" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.frequency"/>
                 </div>                                               
-            </div>
+            </div> -->
             <div style="padding-bottom: 5px; padding-top: 7px;">
-                <strong style="color: white;"><i class='fas fa-ban'/> Content Requirements</strong>
+                <strong style="color: white;"><i class='fas fa-bell'/> Methods</strong>
             </div>
             <div>
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Context Constraints:
+                    Methods:
                 </div>
                 <div style="display: flex;">
                     <input @focus="$event.target.select()" type="text" placeholder="Context Constraints" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.contextConstraints"/>
                 </div>                                               
             </div>
-            <div style="padding-top: 5px;">
+            <!-- <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Structural Constraints:
                 </div>
@@ -142,11 +162,11 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Structural Constraints" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.structuralConstraints"/>
                 </div>                                               
-            </div>
-            <div style="padding-bottom: 5px; padding-top: 7px;">
+            </div> -->
+            <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-comments'/> Reaction Requirements</strong>
-            </div>
-            <div>
+            </div> -->
+            <!-- <div>
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Treatment:
                 </div>
@@ -154,8 +174,8 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Treatment" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.treatment"/>
                 </div>                                               
-            </div>
-            <div style="padding-top: 5px;">
+            </div> -->
+            <!-- <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Linked Communication:
                 </div>
@@ -163,8 +183,8 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Linked Communication" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.linkedCommunication"/>
                 </div>                                               
-            </div>
-            <div style="padding-top: 5px; padding-bottom: 16px;">
+            </div> -->
+            <!-- <div style="padding-top: 5px; padding-bottom: 16px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Linked Reaction:
                 </div>
@@ -172,7 +192,7 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Linked Reaction" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.linkedReaction"/>
                 </div>                                               
-            </div>
+            </div> -->
 
         </div>
 

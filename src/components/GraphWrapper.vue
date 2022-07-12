@@ -3,12 +3,12 @@
         <!-- div for modeler-->
         <div id="container"></div>
         <!-- div for rightbar-->
-        <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;  display: flex;
+        <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
     align-items: top;">            
-            <div id="modelform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">
+            <div id="modelform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;">
                 <ModelDetailsForm ref="form" @change="changeModelDetails" :modelDetails="modelDetails"/>                       
             </div>
-            <div id="editform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;  display: flex;
+            <div id="editform" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
     align-items: top;">
                 <EditForm ref="form" @change="changeObjectValues" :cell-data="currentCell"/> 
             </div>
@@ -18,13 +18,14 @@
         </div>        
         <!-- div for sidebar-->
         <div id="sidebar">
-            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;background-color: #C0C0C0;">                
-                <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px; font-size:xx-small" 
-                >Microservices Modeling Tool</a>
-                <!-- <i class='fas fa-project-diagram' style="font-size: 10px; position: relative; bottom: 35px; color: white;"></i> -->
+            <a id="panelTitle" onclick="location.reload()" style="cursor: pointer; margin-top: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: white; text-align: center;" title=
+            "Created by Emilio Miranda from Universidad de Valparaíso in Chile">                
+                <a style="color: white; text-decoration:none; font-weight: bold; position: relative; bottom: 0px;" 
+                >Communicational Analysis Modeler</a>
+                <i class='fas fa-project-diagram' style="font-size: 16px; position: relative; bottom: 45px; color: white;"></i>
             </a>
             <div id="edit" style="margin-bottom: 15px; margin-right: 5px; margin-top: 10px; height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: left;">
-                <strong style="white-space: pre-wrap; color: white;" title=
+                <strong style="white-space: pre-wrap; color: black;" title=
 "Cut (cmd + x)
 Copy (cmd + c)
 Paste (cmd + v)
@@ -66,11 +67,11 @@ Delete (cmd + 0)"
 
 // MXGRAPH objects creation
     const {
-        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxRhombus,mxLine, mxActor, mxGraph, mxGeometry, mxCell, mxCellRenderer,
+        mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxActor, mxGraph, mxGeometry, mxCell,
         mxImage, mxDivResizer, mxObjectCodec, mxCodecRegistry, mxConnectionHandler,
         mxClipboard, mxRubberband, mxGraphModel,  mxCodec, mxConstants,mxUndoManager, mxMorphing, mxFastOrganicLayout,
         mxEdgeStyle, mxWindow, mxKeyHandler, mxLog, mxShape, mxConnectionConstraint, mxPoint,
-        mxPolyline, mxPerimeter, mxPrintPreview, mxMultiplicity, mxDragSource, mxEdgeHandler, mxGraphHandler, mxGraphView, mxHandle, mxVertexHandler, mxCellTracker,mxCellMarker,
+        mxPolyline, mxPerimeter, mxPrintPreview, mxMultiplicity, mxDragSource, mxEdgeHandler, mxGraphHandler
     } = mxgraph(graphConfig);
 
 // making MXGRAPH objects available for VUE
@@ -79,8 +80,6 @@ Delete (cmd + 0)"
     window.mxActor = mxActor;
     window.mxRectangle = mxRectangle;    
     window.mxEllipse = mxEllipse;
-    window.mxRhombus = mxRhombus;
-    window.mxLine = mxLine;
     window.mxGraph = mxGraph;
     window.mxEvent = mxEvent;
     window.mxGeometry = mxGeometry;
@@ -113,18 +112,8 @@ Delete (cmd + 0)"
     window.mxDragSource = mxDragSource;
     window.mxEdgeHandler = mxEdgeHandler;
     window.mxGraphHandler = mxGraphHandler;
-    window.mxCellRenderer = mxCellRenderer;
-    window.mxGraphView = mxGraphView;
-    window.mxHandle = mxHandle;
-    window.mxVertexHandler = mxVertexHandler;
-    /* window.mxCellTracker = mxCellTracker;
-    window.mxCellMarker = mxCellMarker; */
-    mxVertexHandler.prototype.rotationRaster = true;
-    mxVertexHandler.prototype.rotationCursor = 'crosshair';
-    mxVertexHandler.prototype.livePreview = true;
-    mxVertexHandler.prototype.rotationEnabled = true;
-    
 
+    
     //CONSTANTS
     // Cells selection color
     mxConstants.HANDLE_FILLCOLOR = '#C0C0C0'; // Color cuadrado de selección en centro
@@ -146,33 +135,6 @@ Delete (cmd + 0)"
 
     //CUSTOM DATA STRUCTURES (for each node and relationship)
  
-    // UML Class Block
-// CustomCommunicativeEventObject
-    window.CustomClassBlockObject = function (definition, reference, identifier, name, type, goals, description, channel,
-    temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
-    linkedReaction) {
-        this.definition = definition || 'Class';
-        this.reference = reference || 'Event Type 1';
-        this.identifier = identifier || 'Class ';
-        this.name = name || 'New Class ';
-        this.type = type || 'Class';
-        this.goals = goals || '';
-        this.description = description || '';
-        this.channel = channel || '';
-        this.temporalRestrictions = temporalRestrictions || '';
-        this.frequency = frequency || '';
-        this.contextConstraints = contextConstraints || '';
-        this.structuralConstraints = structuralConstraints || '';
-        this.treatment = treatment || '';
-        this.linkedCommunication = linkedCommunication || '';
-        this.linkedReaction = linkedReaction || '';            
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };   
-
-
-
     // CustomUserObject
     window.CustomUserObject = function (identifier, name, type) {
         this.identifier = identifier || 'Identifier';
@@ -185,12 +147,11 @@ Delete (cmd + 0)"
 
     // CustomStartObject
     window.CustomStartObject = function (definition, reference, identifier, name, type) {
-        
-         this.definition = definition || 'Composition';
-        this.identifier = identifier || 'Composition';
+        this.definition = definition || 'Start';
+        this.identifier = identifier || 'Start';
         this.reference = reference || 'Event Type 4';
-        this.name = name || 'Composition ';
-        this.type = type || 'Composition';
+        this.name = name || 'Start ';
+        this.type = type || 'Start';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -198,11 +159,11 @@ Delete (cmd + 0)"
 
     // CustomEndObject
     window.CustomEndObject = function (definition, reference, identifier, name, type) {
-        this.definition = definition || 'Aggregation';
-        this.identifier = identifier || 'Aggregation';
+        this.definition = definition || 'End';
+        this.identifier = identifier || 'End';
         this.reference = reference || 'Event Type 4';
-        this.name = name || 'Aggregation ';
-        this.type = type || 'Aggregation';
+        this.name = name || 'End ';
+        this.type = type || 'End';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -211,76 +172,31 @@ Delete (cmd + 0)"
     
     // CustomActorObject
     window.CustomActorObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Atributte';
-        this.identifier = identifier || 'Atributte ';
-        this.name = name || 'New Atributte ';
-        this.type = type || 'Atributte';
+        this.definition = definition || 'Actor';
+        this.identifier = identifier || 'Actor ';
+        this.name = name || 'New Actor ';
+        this.type = type || 'Actor';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
 
     // CustomSupportActorObject
-    window.CustomSupportAtributteObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Atributte';
-        this.identifier = identifier || 'Atributte';
-        this.name = name || 'New Atributte';
-        this.type = type || 'Support Atributte';
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-    
-    // CustomMethodObject
-    window.CustomMethodObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Method';
-        this.identifier = identifier || 'Method ';
-        this.name = name || 'New Method ';
-        this.type = type || 'Method';
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-
-    // CustomSupportMethodObject
-    window.CustomSupportMethodObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Method';
-        this.identifier = identifier || 'Method';
-        this.name = name || 'New Method';
-        this.type = type || 'Support Method';
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-
-
-    // CustomCompositionObject
-    window.CustomCompositionObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Composition';
-        this.identifier = identifier || 'Composition ';
-        this.name = name || 'New Composition ';
-        this.type = type || 'Composition';
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-
-    // CustomSupportCompositionObject
-    window.CustomSupportCompositionObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Composition';
-        this.identifier = identifier || 'Composition';
-        this.name = name || 'New Composition';
-        this.type = type || 'Support Composition';
+    window.CustomSupportActorObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Actor';
+        this.identifier = identifier || 'Actor';
+        this.name = name || 'New Actor';
+        this.type = type || 'Support Actor';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
 
     // CustomCommunicativeInteractionObject
-    window.CustomClassBlockInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
+    window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
         this.definition = definition || 'Interaction';
-        this.identifier = identifier || 'Class';
-        this.name = name || 'New Class';
+        this.identifier = identifier || 'CI';
+        this.name = name || 'New CI';
         this.type = type || 'Communicative Interaction';
         this.messageStructure = {
             name: "New Structure",
@@ -305,13 +221,13 @@ Delete (cmd + 0)"
     };
     
     // CustomCommunicativeEventObject
-    window.CustomClassBlockObject = function (definition, reference, identifier, name, type, goals, description, channel,
+    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
         this.definition = definition || 'Event';
         this.reference = reference || 'Event Type 1';
-        this.identifier = identifier || 'Class ';
-        this.name = name || 'New Class ';
+        this.identifier = identifier || 'CE ';
+        this.name = name || 'New CE ';
         this.type = type || 'Communicative Event';
         this.goals = goals || '';
         this.description = description || '';
@@ -408,7 +324,7 @@ Delete (cmd + 0)"
                 graph.connectionHandler.addListener(mxEvent.CONNECT, function(sender, evt)
                 {   
                     var edge = evt.getProperty('cell');
-                    let edgevalue = new window.CustomClassBlockInteractionObject();
+                    let edgevalue = new window.CustomCommunicativeInteractionObject();
                     edge.value=edgevalue;
                     
                     //Interacción Comunicativa Entrante
@@ -427,8 +343,8 @@ Delete (cmd + 0)"
                     &&(Object.values(evt.getProperty('cell').target.getValue(Object)).includes("Actor")))
                     {                                         
                         //console.log('Conectando CE o SCE y Actor...');
-                        /* edgevalue.removeSelection = 0;
-                        edge.style='strokeWidth=2;strokeColor=#a00000;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#a00000;'; */
+                        edgevalue.removeSelection = 0;
+                        edge.style='strokeWidth=2;strokeColor=#a00000;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#a00000;';
                     }
 
                    
@@ -582,14 +498,11 @@ Delete (cmd + 0)"
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
-                        let sac = new window.CustomSupportMethodObject();
                         v.geometry.x = pt.x;
                         v.geometry.y = pt.y;
                         v.geometry.width = 60;
                         v.geometry.height = 60;
-                        v.style='shape=line;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
-                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=0;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=black;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
-                         v1.setConnectable(false);
+                        v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
                         graph.addCell(v, parent);
 
                     } finally {
@@ -618,10 +531,7 @@ Delete (cmd + 0)"
                         v.geometry.y = pt.y;
                         v.geometry.width = 50;
                         v.geometry.height = 50;
-                        v.style='shape=line;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
-                         let v1 = graph.insertVertex(v, null, null, 100, 0, 60, 60, 'constituent=0;deletable=1;arcSize=10;rounded=1;strokeWidth=0;shape=rhombus;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=black;verticalLabelPosition=middle;verticalAlign=middle;') 
-                         v1.setConnectable(false);
-                        graph.addCell(v, parent);
+                        v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=15;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=bottom;verticalAlign=middle;';
                         graph.addCell(v, parent);
 
                     } finally {
@@ -659,7 +569,7 @@ Delete (cmd + 0)"
                     
                 };
 
-                let dragCallBackFunctClassBlock = function (graph, evt, obj) {
+                let dragCallBackFunctCommunicativeEvent = function (graph, evt, obj) {
 
                     graph.recursiveResize = true;
                     
@@ -668,59 +578,21 @@ Delete (cmd + 0)"
                     let parent = graph.getDefaultParent();                    
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
-                    let sac = new window.CustomSupportAtributteObject();
-                    let sac1 = new window.CustomSupportMethodObject();
+                    let sac = new window.CustomSupportActorObject();
+                    let sac1 = new window.CustomSupportActorObject();
                     model.beginUpdate();
                     try {                        
                         v.setValue(obj);
                         v.geometry.x = pt.x;
                         v.geometry.y = pt.y;
-                        v.geometry.width = 80;
+                        v.geometry.width = 150;
                         
-                        v.geometry.height = 30;
+                        v.geometry.height = 175;
                         v.style='shape=rectangle;fillColor=white;arcSize=3;rounded=0;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
                         
                         //ADD Support Actor as vertex inside the Communicative Event Vertex
                         let v1 = graph.insertVertex(v, null, sac, 0, 55, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
                         let v2 = graph.insertVertex(v, null, sac1, 0, 115, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
-
-                        
-
-                        //rounded=0;whiteSpace=wrap;html=1;autosize=1;resizable=0;opacity=50; arcSize=10;rounded=1;
-                        v1.setConnectable(false);
-                        v2.setConnectable(false);                        
-                        graph.addCell(v, parent);
-
-                    } finally {
-                        model.endUpdate();
-                    }
-                    graph.setSelectionCell(v);
-                    
-                };   
-                
-                let dragCallBackFunctComposition = function (graph, evt, obj) {
-
-                    graph.recursiveResize = true;
-                    
-                    let pt = graph.getPointForEvent(evt);
-
-                    let parent = graph.getDefaultParent();                    
-                    let model = graph.getModel();                    
-                    let v = model.cloneCell(prototype);
-                    let sac = new window.CustomSupportCompositionObject();
-                    model.beginUpdate();
-                    try {                        
-                        v.setValue(obj);
-                        v.geometry.x = pt.x;
-                        v.geometry.y = pt.y;
-                        v.geometry.width = 180;
-                        
-                        v.geometry.height = 175;
-                        v.style='shape=rhombus;fillColor=#00a8f3;arcSize=3;rounded=1;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
-                        
-                        //ADD Support Actor as vertex inside the Communicative Event Vertex
-                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
-                        let v2 = graph.insertVertex(v, null, sac1, 0, 115, 225, 60, 'constituent=1;deletable=0;arcSize=10;rounded=1;strokeWidth=3;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
 
                         
 
@@ -734,7 +606,7 @@ Delete (cmd + 0)"
                     }
                     graph.setSelectionCell(v);
                     
-                };        
+                };                
 
                 let dragCallBackFunctSpecialisedCommunicativeEvent = function (graph, evt, obj) {
 
@@ -779,16 +651,6 @@ Delete (cmd + 0)"
                 var numberSCE = 0;
 
                 // Passes type of node depending on dragged icon
-
-                let dragClassBlockCallBackFunct = function (graph, evt) {
-                    let obj = new window.CustomClassBlockObject();
-                    numberCE = numberCE+1;
-                    obj.name = obj.name+numberCE;
-                    obj.identifier = obj.identifier+numberCE;
-                    dragCallBackFunctClassBlock(graph, evt, obj);
-                };
-
-
                 let dragStartCallBackFunct = function (graph, evt) {                    
                     let obj = new window.CustomStartObject();
                     numberStart = numberStart+1;
@@ -813,7 +675,13 @@ Delete (cmd + 0)"
                     dragCallBackFunctActor(graph, evt, obj);
                 };                
 
-                
+                let dragCommunicativeEventCallBackFunct = function (graph, evt) {
+                    let obj = new window.CustomCommunicativeEventObject();
+                    numberCE = numberCE+1;
+                    obj.name = obj.name+numberCE;
+                    obj.identifier = obj.identifier+numberCE;
+                    dragCallBackFunctCommunicativeEvent(graph, evt, obj);
+                };
 
                 let dragSpecialisedCommunicativeEventCallBackFunct = function (graph, evt) {
                     let obj = new window.CustomSpecialisedCommunicativeEventObject();
@@ -827,8 +695,8 @@ Delete (cmd + 0)"
 
                 // Specialised Communicative Event concept wrapper                
 
-                //let specialisedCommunicativeEventWrapper = document.createElement('div');
-                 /* specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
+                /* let specialisedCommunicativeEventWrapper = document.createElement('div');
+                specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
                 specialisedCommunicativeEventWrapper.style.margin = '0px 5px 20px 5px';
                 specialisedCommunicativeEventWrapper.style.width = '75px';
                 specialisedCommunicativeEventWrapper.style.height = '75px';
@@ -842,28 +710,28 @@ Delete (cmd + 0)"
 
                 let titleSpecialisedCommunicativeEventWrapper = document.createElement('div');
                 titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>';
-                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);   */                                          
+                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);    */                                        
 
                 // Communicative Event concept wrapper
-                let ClassBlockWrapper = document.createElement('div');
-                ClassBlockWrapper.style.cursor = 'pointer';
-                ClassBlockWrapper.style.margin = '0px 5px 20px 5px';
-                ClassBlockWrapper.style.width = '75px';
-                ClassBlockWrapper.style.height = '75px';
-                ClassBlockWrapper.style.textAlign = 'center';
-                ClassBlockWrapper.style.display = 'flex';
-                ClassBlockWrapper.style.flexWrap = 'wrap';
-                ClassBlockWrapper.style.alignItems = 'center';
-                ClassBlockWrapper.style.justifyContent = 'center';
-                ClassBlockWrapper.innerHTML = '<div><img  src='+mxImageBasePath +'/class_block.png></div>';
-                sidebar.appendChild(ClassBlockWrapper);
+                let communicativeEventWrapper = document.createElement('div');
+                communicativeEventWrapper.style.cursor = 'pointer';
+                communicativeEventWrapper.style.margin = '0px 5px 20px 5px';
+                communicativeEventWrapper.style.width = '75px';
+                communicativeEventWrapper.style.height = '75px';
+                communicativeEventWrapper.style.textAlign = 'center';
+                communicativeEventWrapper.style.display = 'flex';
+                communicativeEventWrapper.style.flexWrap = 'wrap';
+                communicativeEventWrapper.style.alignItems = 'center';
+                communicativeEventWrapper.style.justifyContent = 'center';
+                communicativeEventWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/class_block.png></div>';
+                sidebar.appendChild(communicativeEventWrapper);
 
-                let titleClassBlockWrapper = document.createElement('div');
-                titleClassBlockWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">Class</div>';
-                sidebar.appendChild(titleClassBlockWrapper);    
+                let titleCommunicativeEventWrapper = document.createElement('div');
+                titleCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">Class</div>';
+                sidebar.appendChild(titleCommunicativeEventWrapper);    
                 
                 // Actor concept wrapper                
-                //let actorWrapper = document.createElement('div');
+                 let actorWrapper = document.createElement('div');
                 /* actorWrapper.style.cursor = 'pointer';
                 actorWrapper.style.margin = '0px 5px 20px 5px';
                 actorWrapper.style.width = '75px';
@@ -878,31 +746,29 @@ Delete (cmd + 0)"
 
                 let titleActorWrapper = document.createElement('div');
                 titleActorWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Actor</div>';
-                sidebar.appendChild(titleActorWrapper);  */               
+                sidebar.appendChild(titleActorWrapper);     */            
 
                 // End concept wrapper                
-                //let endWrapper = document.createElement('div');
-               /*  endWrapper.style.cursor = 'pointer';
-                endWrapper.style.margin = '0px 35px 20px 35px';
-                endWrapper.style.padding = '0px 10px 0px 10px';
-                endWrapper.style.width = '30px';
-                endWrapper.style.height = '30px';
+                let endWrapper = document.createElement('div');
+                /* endWrapper.style.cursor = 'pointer';
+                endWrapper.style.margin = '0px 5px 20px 5px';
+                endWrapper.style.width = '60px';
+                endWrapper.style.height = '60px';
                 endWrapper.style.textAlign = 'center';
                 endWrapper.style.display = 'flex';
                 endWrapper.style.flexWrap = 'wrap';
                 endWrapper.style.alignItems = 'center';
                 endWrapper.style.justifyContent = 'center';
-                endWrapper.style.width= "30%";
-                endWrapper.innerHTML = '<div><img  style = "margin: 0px 20px 0px px;"src='+mxImageBasePath +'/aggregation.png></div>';
+                endWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/end.png></div>';
                 sidebar.appendChild(endWrapper);  
 
                 let titleEndWrapper = document.createElement('div');
-                titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Aggregation</div>';
-                sidebar.appendChild(titleEndWrapper); */
-            
+                titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">End</div>';
+                sidebar.appendChild(titleEndWrapper);   
+             */
                 // Start concept wrapper                
-               /*  let startWrapper = document.createElement('div');
-                startWrapper.style.cursor = 'pointer';
+                 let startWrapper = document.createElement('div');
+                /* startWrapper.style.cursor = 'pointer';
                 startWrapper.style.margin = '0px 5px 20px 5px';
                 startWrapper.style.width = '60px';
                 startWrapper.style.height = '60px';
@@ -911,17 +777,14 @@ Delete (cmd + 0)"
                 startWrapper.style.flexWrap = 'wrap';
                 startWrapper.style.alignItems = 'center';
                 startWrapper.style.justifyContent = 'center';
-                startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/composition.png></div>';
+                startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/start.png></div>';
                 sidebar.appendChild(startWrapper);  
 
                 let titleStartWrapper = document.createElement('div');
-                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Composition</div>';
-                sidebar.appendChild(titleStartWrapper);   */    
+                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>';
+                sidebar.appendChild(titleStartWrapper);   */   
 
                 // Creates the image which is used as the drag icon (preview)
-
-                let dragImageClassBlock = ClassBlockWrapper.cloneNode(true);
-                mxUtils.makeDraggable(ClassBlockWrapper, graph, dragClassBlockCallBackFunct, dragImageClassBlock);
 
                 let dragImageStart = startWrapper.cloneNode(true);
                 mxUtils.makeDraggable(startWrapper, graph, dragStartCallBackFunct, dragImageStart);
@@ -932,7 +795,8 @@ Delete (cmd + 0)"
                 let dragImageActor = actorWrapper.cloneNode(true);
                 mxUtils.makeDraggable(actorWrapper, graph, dragActorCallBackFunct, dragImageActor);
 
-                
+                let dragImageCommunicativeEvent = communicativeEventWrapper.cloneNode(true);
+                mxUtils.makeDraggable(communicativeEventWrapper, graph, dragCommunicativeEventCallBackFunct, dragImageCommunicativeEvent);
 
                 let dragImageSpecialisedCommunicativeEvent = specialisedCommunicativeEventWrapper.cloneNode(true);
                 mxUtils.makeDraggable(specialisedCommunicativeEventWrapper, graph, dragSpecialisedCommunicativeEventCallBackFunct, dragImageSpecialisedCommunicativeEvent);                
@@ -972,7 +836,7 @@ Delete (cmd + 0)"
                     sidebar.style.flexDirection = 'column-reverse';
                     sidebar.style.alignItems = 'center';
                     sidebar.style.justifyContent = 'flex-end';
-                    sidebar.style.backgroundColor = '#C2C2C2';
+                    sidebar.style.backgroundColor = '#c7c7c7';
                     
                     // Rightbar configuration
                     let rightbar = document.getElementById('rightbar');
@@ -990,7 +854,7 @@ Delete (cmd + 0)"
                     rightbar.style.flexDirection = 'column';
                     rightbar.style.alignItems = 'center';
                     rightbar.style.justifyContent = 'space-between';
-                    rightbar.style.backgroundColor = '#313131';
+                    rightbar.style.backgroundColor = '#202020';
 
                     if (mxClient.IS_QUIRKS) {
                         document.body.style.overflow = 'hidden';
@@ -1119,7 +983,7 @@ Delete (cmd + 0)"
                     // Adds sidebar icon for the propertie object
                     let customObject = new window.CustomUserObject();
 
-                    let object = new mxCell(customObject, new mxGeometry(0, 0,75, 75), '', mxVertexHandler());
+                    let object = new mxCell(customObject, new mxGeometry(0, 0,75, 75), '');
                     object.setVertex(true);
                     object.setConnectable(true);
 

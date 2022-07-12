@@ -995,6 +995,7 @@ Delete (cmd + 0)"
                     undo(editor.graph);
                     // Init exportmodel
                     toolBarButtons(editor.graph, this.modelDetails);
+                    toolBarButtons();
                     // Init validation
                     validation(editor.graph);
                     // Init zoom

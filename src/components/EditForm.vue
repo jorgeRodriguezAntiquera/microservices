@@ -100,12 +100,12 @@
                 <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
             </div>
             <div>
-                <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
+                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Name Atributte:
-                </div> -->
+                </div> 
                 <div style="display: flex;">
 
-                 <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
+                  <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
 
 
                     <Select @focus="$event.target.select()" type="text" placeholder="Atributte" style="outline: none; pointer-events: auto; width : 50%; margin-left: 5%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
@@ -117,7 +117,7 @@
                     <option>double</option>
                     <option>string</option>
                     <option>boolean</option>
-                    </select> 
+                    </select>  
   
                     
                     
@@ -236,13 +236,18 @@
                 type: Object
             }
         },
+        
+    
+  
         methods: {
             // Eliminate frequent requests
             debounce_change: debounce(function () {
                // Report changes
                 this.$emit('change', this.cellData.value);
             }, 200)
-        },
+        }
+       
+  
        
     }       
     

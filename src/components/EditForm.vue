@@ -1,5 +1,5 @@
 <template>
-    <div spellcheck="false" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; width: 210px; margin-top: 10px;">
+    <div spellcheck="false" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; width: 210px; margin-top: 0px;">
         
         <div v-if="cellData && (cellData.value.definition == 'Relation') && cellData.value">
             <div style="text-align: center; padding-bottom: 8px;">
@@ -23,7 +23,7 @@
             </div>
 
             <div v-if="cellData && ((cellData.value.reference == 'Event Type 1') || (cellData.value.reference == 'Event Type 3')) && cellData.value">
-                <div style="text-align: center; margin-top: 5%;">
+                <div style="text-align: center;">
                     <strong style="color: #C0C0C0">Class</strong>
                 </div>
             </div>
@@ -120,25 +120,21 @@
                     </select>  
   
                      -->
-                     <div class="work-experiences">
+                <div class="work-experiences">
                     <div class="form-row" style="display: flex;" v-for="(experience, index) in workExperiences" :key="index">
-          <div class="form-group row-md-6">
-            <div style="padding-top: 5px;">
-            <label>Company</label>
-            <input v-model="experience.company" :name="`workExperiences[${index}][company]`" type="text" class="form-control" placeholder="Company">
-          </div>
-          <div class="form-group row-md-6">
-            <label>Title</label>
-            <input  v-model="experience.title" :name="`workExperiences[${index}][title]`" type="text" class="form-control" placeholder="Title">
-            </div>
-          </div>
-          </div>
-        </div>
+                        <div class="form-group row-md-6">
+                            <div>
+                                <input v-model="experience.company" :name="`workExperiences[${index}][company]`" type="text" class="form-control" placeholder="Atributte">
+                                <button @click="addExperience" type="button" class="btn btn-secondary">Add</button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
       </div>
-
+<!-- 
       <div class="form-group">
-        <button @click="addExperience" type="button" class="btn btn-secondary">Add experience</button>
-      </div>
+        <button @click="addExperience" type="button" class="btn btn-secondary">Add</button>
+      </div> -->
 
                   
                           
@@ -258,8 +254,7 @@
         data: () => ({
     workExperiences: [
       {
-        company: "Foxconn",
-        title: "Engineer"
+        company: "",
       }
     ]
   }),
@@ -297,8 +292,8 @@
 
 <style>
 .work-experiences > div {
-  margin: 20px 0;
-  padding-bottom: 10px;
+  margin: 0px 0;
+  padding-bottom: 0px;
 }
 .work-experiences > div:not(:last-child) {
   border-bottom: 1px solid rgb(206, 212, 218);

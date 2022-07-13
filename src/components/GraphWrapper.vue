@@ -111,6 +111,7 @@ Delete (cmd + 0)"
     window.mxDragSource = mxDragSource;
     window.mxEdgeHandler = mxEdgeHandler;
     window.mxGraphHandler = mxGraphHandler;
+    window.scrollTo(0,document.body.scrollHeight);
 
     
     //CONSTANTS
@@ -819,6 +820,7 @@ Delete (cmd + 0)"
                     container.style.left = '120px';
                     container.style.top = '0px';
                     container.style.right = '240px';
+                    container.style.height = '100%';
                     container.style.bottom = '0px';                    
                     container.style.background = `url("${require('../assets/grid.gif')}")`;
 
@@ -830,6 +832,7 @@ Delete (cmd + 0)"
                     sidebar.style.left = '0px';
                     sidebar.style.top = '0px';
                     sidebar.style.width = '110px';
+                    sidebar.style.height= '100%';
                     sidebar.style.bottom = '0px';
                     sidebar.style.display = 'flex';
                     sidebar.style.flexDirection = 'column-reverse';
@@ -848,7 +851,7 @@ Delete (cmd + 0)"
                     rightbar.style.paddingTop = '47px';
                     rightbar.style.top = '0px';                    
                     rightbar.style.bottom = '0px';
-                    rightbar.style.width = '820px';
+                    rightbar.style.width = '18%';
                     rightbar.style.height='100%';
                     rightbar.style.display = 'flex';
                     rightbar.style.flexDirection = 'column';

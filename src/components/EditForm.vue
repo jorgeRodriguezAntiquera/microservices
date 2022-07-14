@@ -100,9 +100,9 @@
                 <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
             </div>
             <div>
-                 <div style="color: #C0C0C0; padding-bottom: 2px;">
+                 <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Name Atributte:
-                </div> 
+                </div>  -->
                 <div style="display: flex;">
 
                   <!-- <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
@@ -130,6 +130,8 @@
                         </div>
                      </div>
                 </div>
+
+                
       </div>
 <!-- 
       <div class="form-group">
@@ -157,10 +159,20 @@
                            v-model="cellData.value.frequency"/>
                 </div>                                               
             </div> -->
-            <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
+             <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-bell'/> Methods</strong>
             </div>
-            <div>
+            <div class="work-experiences">
+                    <div class="form-row" style="display: flex;" v-for="(experience, index) in methods" :key="index">
+                        <div class="form-group row-md-6">
+                            <div>
+                                <input v-model="experience.company" :name="`methods[${index}][company]`" type="text" class="form-control" placeholder="method">
+                                <button @click="addMethod" type="button" class="btn btn-secondary">Add</button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            <!-- <div>
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Methods:
                 </div>
@@ -168,7 +180,7 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.contextConstraints"/>
                 </div>                                               
-            </div> -->
+            </div>  -->
             <!-- <div style="padding-top: 5px;">
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Structural Constraints:
@@ -200,7 +212,7 @@
                 </div>                                               
             </div> -->
             <!--  -->
-
+            
         </div>
 
         <div style="text-align: center; color: #C0C0C0; line-height: 500px;" v-else>
@@ -256,6 +268,11 @@
       {
         company: "",
       }
+    ],
+    methods: [
+        {
+            method: "",
+        }
     ]
   }),
         
@@ -273,6 +290,12 @@
         title: ''
       })
     },
+    addMethod(){
+        this.methods.push({
+            method: "",
+        })
+
+    }
             
         }
        

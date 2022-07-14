@@ -220,15 +220,15 @@ Delete (cmd + 0)"
         };
     };
     
-    // CustomCommunicativeEventObject
+   // CustomCommunicativeEventObject
     window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
         this.definition = definition || 'Event';
         this.reference = reference || 'Event Type 1';
         this.identifier = identifier || 'CE ';
-        this.name = name || 'New Class ';
-        this.type = type || 'Class';
+        this.name = name || 'New CE ';
+        this.type = type || 'Communicative Event';
         this.goals = goals || '';
         this.description = description || '';
         this.channel = channel || '';
@@ -238,7 +238,8 @@ Delete (cmd + 0)"
         this.structuralConstraints = structuralConstraints || '';
         this.treatment = treatment || '';
         this.linkedCommunication = linkedCommunication || '';
-        this.linkedReaction = linkedReaction || '';            
+        this.linkedReaction = linkedReaction || '';  
+                  
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -267,7 +268,6 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
-
     // CustomInternalCommunicativeEventObject
     window.CustomInternalCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
@@ -832,7 +832,7 @@ Delete (cmd + 0)"
                     sidebar.style.left = '0px';
                     sidebar.style.top = '0px';
                     sidebar.style.width = '110px';
-                    sidebar.style.height= '100%';
+                    
                     sidebar.style.bottom = '0px';
                     sidebar.style.display = 'flex';
                     sidebar.style.flexDirection = 'column-reverse';
@@ -851,8 +851,7 @@ Delete (cmd + 0)"
                     rightbar.style.paddingTop = '47px';
                     rightbar.style.top = '0px';                    
                     rightbar.style.bottom = '0px';
-                    rightbar.style.width = '18%';
-                    rightbar.style.height='100%';
+                    rightbar.style.width = '220px';
                     rightbar.style.display = 'flex';
                     rightbar.style.flexDirection = 'column';
                     rightbar.style.alignItems = 'center';

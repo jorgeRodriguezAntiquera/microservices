@@ -36,11 +36,12 @@ function exportModelJSON(graph, modelDetailsP) {
     var model = 
     {
         "header":[],
-        "actors":[],
-        "starts":[],
-        "ends":[],
-        "communicativeEvents":[],
-        "specialisedCommunicativeEvents":[],
+        /* "actors":[], */
+        /* "starts":[], */
+        /* "ends":[], */
+        /* "communicativeEvents":[], */
+        "classDiagram":[],
+        /* "specialisedCommunicativeEvents":[], */
         "communicativeInteractions":[],
         "precedenceRelations":[]
     };
@@ -49,9 +50,9 @@ function exportModelJSON(graph, modelDetailsP) {
 
     //Generate model details from global var
     var modelDetails = {
-        userName: modelDetailsP.userName,
+        /* userName: modelDetailsP.userName, */
         identifier: currentId,
-        type: 'COMMUNICATIONANALYSIS'
+        type: 'ClassDiagram'
     }
 
     model.header.push(modelDetails);
@@ -105,10 +106,10 @@ function exportModelJSON(graph, modelDetailsP) {
                 unique: selection[index].id,
                 identifier: selection[index].value.identifier,
                 name: selection[index].value.name,
-                type: selection[index].value.type,
-                goals: selection[index].value.goals,
+                /* type: selection[index].value.type, */
+                stereotype: selection[index].value.stereotype,
                 description: selection[index].value.description,
-                channel: selection[index].value.channel,
+                /* channel: selection[index].value.channel,
                 temporalRestrictions: selection[index].value.temporalRestrictions,
                 frequency: selection[index].value.frequency,
                 contextConstraints: selection[index].value.contextConstraints,
@@ -125,9 +126,9 @@ function exportModelJSON(graph, modelDetailsP) {
                         name: selection[index].children[0].value.name,
                         type: selection[index].children[0].value.type
                     }
-                ]
+                ] */
             }
-            model.communicativeEvents.push(communicativeEvent);
+            model.classDiagram.push(communicativeEvent);
         }
     }
 
@@ -1049,11 +1050,11 @@ function toolBarButtons(graph, modelDetailsP){
     
     buttonLoad.style.position = 'absolute';    
     buttonLoad.style.top = '4px';
-    buttonLoad.style.right = '4px';
+    buttonLoad.style.right = '81px';
     buttonLoad.style.width = '73px';
     buttonLoad.setAttribute("class", "button");
 
-    let buttonPreview = document.body.appendChild(mxUtils.button('Print', function()
+    /* let buttonPreview = document.body.appendChild(mxUtils.button('Print', function()
     {        
         var preview = new mxPrintPreview(graph, 1);
         preview.title = 'Print';
@@ -1083,7 +1084,7 @@ function toolBarButtons(graph, modelDetailsP){
     buttonPreview.style.top = '4px';
     buttonPreview.style.right = '82px';
     buttonPreview.style.width = '72px';
-    buttonPreview.setAttribute("class", "button");
+    buttonPreview.setAttribute("class", "button"); */
 	
 
     let buttonEvaluate = document.body.appendChild(mxUtils.button('Evaluate', function()

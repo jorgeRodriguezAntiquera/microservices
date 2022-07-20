@@ -2,7 +2,7 @@
     <div spellcheck="false" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; width: 210px; margin-top: 10px;">
         
             <div>
-                <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
+                <!-- <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                         User Name:
                 </div>
                 <div style="display: flex; text-align: center;">
@@ -10,7 +10,7 @@
                         <input @focus="$event.target.select()" type="text" placeholder="user name" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;"
                                 @input="debounce_change" v-model="modelDetails.userName"/>
                     </div>  
-                </div>
+                </div> -->
             </div>
          </div> 
 </template>

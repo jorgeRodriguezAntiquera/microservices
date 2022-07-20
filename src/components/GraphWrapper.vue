@@ -1,7 +1,10 @@
 <template>    
     <div style="cursor: default;">        
         <!-- div for modeler-->
-        <div id="container"></div>
+        <div id="container">
+        <button style="margin: 0% 94%; height: 40px; position: absolute;"> Login</button>
+
+        </div>
         <!-- div for rightbar-->
         <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
     align-items: top;">            
@@ -183,10 +186,19 @@ Delete (cmd + 0)"
 
     // CustomSupportActorObject
     window.CustomSupportActorObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Actor';
-        this.identifier = identifier || 'Actor';
-        this.name = name || 'New Actor';
-        this.type = type || 'Support Actor';
+        this.definition = definition || 'Atributte';
+        this.identifier = identifier || 'Atributte';
+        this.name = name || 'New Atributte';
+        this.type = type || 'Support Atributte';
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+    window.CustomSupportMethodObject = function (definition, identifier, name, type) {
+        this.definition = definition || 'Method';
+        this.identifier = identifier || 'Method';
+        this.name = name || 'New Method';
+        this.type = type || 'Support Method';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -221,15 +233,15 @@ Delete (cmd + 0)"
     };
     
    // CustomCommunicativeEventObject
-    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
+    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, stereotype, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
     linkedReaction) {
         this.definition = definition || 'Event';
         this.reference = reference || 'Event Type 1';
         this.identifier = identifier || 'CE ';
-        this.name = name || 'New CE ';
+        this.name = name || 'New Class ';
         this.type = type || 'Communicative Event';
-        this.goals = goals || '';
+        this.stereotype = stereotype || 'none';
         this.description = description || '';
         this.channel = channel || '';
         this.temporalRestrictions = temporalRestrictions || '';
@@ -579,7 +591,7 @@ Delete (cmd + 0)"
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
                     let sac = new window.CustomSupportActorObject();
-                    let sac1 = new window.CustomSupportActorObject();
+                    let sac1 = new window.CustomSupportMethodObject();
                     model.beginUpdate();
                     try {                        
                         v.setValue(obj);

@@ -35,9 +35,7 @@
             </div>            
 
         <div v-if="cellData && (cellData.value.removeSelection != 1) && cellData.value">    
-            <div style="padding-bottom: 5px;">
-                <strong style="color: white;"><i class='fas fa-quote-left'/> General Description</strong>
-            </div>
+            
 
             <div>
                 <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
@@ -47,7 +45,7 @@
                     <input @focus="$event.target.select()" type="text" placeholder="Identifier" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.identifier"/>
                 </div> -->
-                <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
+                <!-- <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                     Name:
                 </div>
                 <div style="display: flex;">
@@ -55,7 +53,7 @@
                            v-model="cellData.value.name"/>
                            
                         
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -70,12 +68,24 @@
         </div>
         <div v-if="cellData && (cellData.value.definition == 'Event') && cellData.value">
             <div>
+                <div style="padding-bottom: 5px;">
+                <strong style="color: white;"><i class='fas fa-quote-left'/> General Description</strong>
+            </div>
+                <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
+                    Name:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Name" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.name"/>
+                           
+                        
+                </div>
                 <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                     Stereotypes:
                 </div>
                 <div style="display: flex;">
                     <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.goals">
+                           v-model="cellData.value.stereotype">
                         <option disabled value="">Please select one</option>
                         <option>None</option>
                         <option>Entity</option>

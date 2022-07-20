@@ -234,15 +234,31 @@
             </strong>
         </div>
 
-        <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">            
-            <div style="margin-top: 7px;">
+        <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">   
+        <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
+                    Relation:
+                </div>
+                <div style="display: flex;">
+                    <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.type">
+                        <option disabled value="">Please select one</option>
+                        <option>Association</option>
+                        <option>Inheritance</option>
+                        <option>Dependency</option>
+                        <option>Aggregation</option>
+                        <option>Composition</option>
+                        
+                    </select>
+                    
+                </div>         
+            <!-- <div style="margin-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-envelope'/> Message Structure</strong>
             </div>
             <div style="overflow: auto; height: 400px; width: 100%;">
                 <ul>
                     <li><node :node="cellData.value.messageStructure" no-remove style="margin-top: -5px;"/></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         
     </div>

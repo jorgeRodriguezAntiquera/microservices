@@ -207,9 +207,9 @@ Delete (cmd + 0)"
     // CustomCommunicativeInteractionObject
     window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
         this.definition = definition || 'Interaction';
-        this.identifier = identifier || 'CI';
-        this.name = name || 'New CI';
-        this.type = type || 'Communicative Interaction';
+        this.identifier = identifier || 'R';
+        this.name = name || 'New Relation';
+        this.type = type || '"Relation"';
         this.messageStructure = {
             name: "New Structure",
             type: "Structure",
@@ -238,7 +238,7 @@ Delete (cmd + 0)"
     linkedReaction) {
         this.definition = definition || 'Event';
         this.reference = reference || 'Event Type 1';
-        this.identifier = identifier || 'CE ';
+        this.identifier = identifier || 'CD ';
         this.name = name || 'New Class ';
         this.type = type || 'Communicative Event';
         this.stereotype = stereotype || 'none';
@@ -843,7 +843,7 @@ Delete (cmd + 0)"
                     sidebar.style.padding = '5px';
                     sidebar.style.left = '0px';
                     sidebar.style.top = '0px';
-                    sidebar.style.width = '110px';
+                    sidebar.style.width = '130px';
                     
                     sidebar.style.bottom = '0px';
                     sidebar.style.display = 'flex';
@@ -863,7 +863,7 @@ Delete (cmd + 0)"
                     rightbar.style.paddingTop = '47px';
                     rightbar.style.top = '0px';                    
                     rightbar.style.bottom = '0px';
-                    rightbar.style.width = '220px';
+                    rightbar.style.width = '238px';
                     rightbar.style.display = 'flex';
                     rightbar.style.flexDirection = 'column';
                     rightbar.style.alignItems = 'center';

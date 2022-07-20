@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <graph-wrapper/> -->
+     <graph-wrapper/> 
     <!-- <login-vue></login-vue> -->
-    <register-vue></register-vue>
+    <!-- <register-vue></register-vue> -->
   </div>
 </template>
 

@@ -106,9 +106,9 @@
                            v-model="cellData.value.description"/>
                 </div>                                               
             </div>
-            <div style="padding-bottom: 5px; padding-top: 7px;">
+           <!--  <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
-            </div>
+            </div> -->
             <div>
                  <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Name Atributte:
@@ -130,7 +130,7 @@
                     </select>  
   
                      -->
-                <div class="work-experiences">
+                <!-- <div class="work-experiences">
                     <div class="form-row" style="display: flex;" v-for="(experience, index) in workExperiences" :key="index">
                         <div class="form-group row-md-6">
                             <div>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                      </div>
-                </div>
+                </div> -->
 
                 
       </div>
@@ -169,7 +169,7 @@
                            v-model="cellData.value.frequency"/>
                 </div>                                               
             </div> -->
-             <div style="padding-bottom: 5px; padding-top: 7px;">
+             <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-bell'/> Methods</strong>
             </div>
             <div class="work-experiences">
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                      </div>
-                </div>
+                </div> -->
             <!-- <div>
                 <div style="color: #C0C0C0; padding-bottom: 2px;">
                     Methods:
@@ -234,13 +234,116 @@
             </strong>
         </div>
 
+          <div v-if="cellData && (cellData.value.definition == 'Atributte') && cellData.value">
+            <div style="padding-bottom: 5px; padding-top: 7px;">
+                <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Atributte:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Attribute(type)" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.atributte1"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Atributte:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Attribute(type)" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.atributte2"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Atributte:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Attribute(type)" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.atributte3"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Atributte:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Attribute(type)" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.atributte4"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Atributte:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Attribute(type)" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.atributte5"/>
+                </div>                                               
+            </div>
+         </div> 
+
+
+         <div v-if="cellData && (cellData.value.definition == 'Method') && cellData.value">
+            <div style="padding-bottom: 5px; padding-top: 7px;">
+                <strong style="color: white;"><i class='fas fa-bell'/> Method</strong>
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Method:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.method1"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Method:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.method2"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Method:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.method3"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Method:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.method4"/>
+                </div>                                               
+            </div>
+            <div style="padding-top: 5px;">
+                <div style="color: #C0C0C0; padding-bottom: 2px;">
+                    Method:
+                </div>
+                <div style="display: flex;">
+                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.method5"/>
+                </div>                                               
+            </div>
+         </div> 
+
         <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">   
         <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
                     Relation:
                 </div>
                 <div style="display: flex;">
                     <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.type">
+                           v-model="cellData.value.rel">
                         <option disabled value="">Please select one</option>
                         <option>Association</option>
                         <option>Inheritance</option>

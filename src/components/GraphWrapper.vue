@@ -185,19 +185,29 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportActorObject = function (definition, identifier, name, type) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
-        this.type = type || 'Support Atributte';
+        this.atributte1 = atributte1 || '';
+        this.atributte2 = atributte2 || '';
+        this.atributte3 = atributte3 || '';
+        this.atributte4 = atributte4 || '';
+        this.atributte5 = atributte5 || '';
+        this.type = type || 'Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
-    window.CustomSupportMethodObject = function (definition, identifier, name, type) {
+    window.CustomSupportMethodObject = function (definition, identifier, name, type, method1, method2, method3, method4, method5) {
         this.definition = definition || 'Method';
         this.identifier = identifier || 'Method';
         this.name = name || 'New Method';
+        this.method1 = method1 || '';
+        this.method2 = method2 || '';
+        this.method3 = method3 || '';
+        this.method4 = method4 || '';
+        this.method5 = method5 || '';
         this.type = type || 'Support Method';
         this.clone = function () {
             return mxUtils.clone(this);
@@ -222,11 +232,12 @@ Delete (cmd + 0)"
     };
 
     // CustomPrecedenceRelationshipObject
-    window.CustomRelationObject = function (definition, identifier, name, type) {
+    window.CustomRelationObject = function (definition, identifier, name, type,rel) {
         this.definition = definition || 'Relation';
         this.identifier = identifier || '';
         this.name = name || '';
-        this.type = type || 'Precedence Relation';                
+        this.type = type || 'Precedence Relation'; 
+        this.type = rel || '';               
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -409,7 +420,7 @@ Delete (cmd + 0)"
                         var edgeRelation = evt.getProperty('cell');
                         let edgevalueRelation = new window.CustomRelationObject();
                         edgeRelation.value=edgevalueRelation;
-                        edgeRelation.style='strokeWidth=2;strokeColor=#000000;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#000000;';
+                        edgeRelation.style='strokeWidth=2;strokeColor=black;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#000000;';
                     }                   
 
                     //Remover CI de CE con Eventos Comunicativos Internos
@@ -590,7 +601,7 @@ Delete (cmd + 0)"
                     let parent = graph.getDefaultParent();                    
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
-                    let sac = new window.CustomSupportActorObject();
+                    let sac = new window.CustomSupportAtributteObject();
                     let sac1 = new window.CustomSupportMethodObject();
                     model.beginUpdate();
                     try {                        
@@ -599,12 +610,12 @@ Delete (cmd + 0)"
                         v.geometry.y = pt.y;
                         v.geometry.width = 150;
                         
-                        v.geometry.height = 175;
+                        v.geometry.height = 265;
                         v.style='shape=rectangle;fillColor=white;arcSize=3;rounded=0;strokeWidth=3;foldable=0;resizable=1;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=top;';
                         
                         //ADD Support Actor as vertex inside the Communicative Event Vertex
-                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
-                        let v2 = graph.insertVertex(v, null, sac1, 0, 115, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+                        let v1 = graph.insertVertex(v, null, sac, 0, 55, 150, 130, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+                        let v2 = graph.insertVertex(v, null, sac1, 0, 180, 150, 130, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
 
                         
 
@@ -923,8 +934,30 @@ Delete (cmd + 0)"
                             var identifierLabel = (this.labelsVisible) ? cell.value.identifier : '';
                             var nameLabel = (this.labelsVisible) ? cell.value.name : '';
                             var geometry = this.model.getGeometry(cell);
+                            var stereotypeLabel = (this.labelsVisible) ? cell.value.stereotype : '';
+                            var atributte1Label = (this.labelsVisible) ? cell.value.atributte1 : '';
+                            var atributte2Label = (this.labelsVisible) ? cell.value.atributte2 : '';
+                            var atributte3Label = (this.labelsVisible) ? cell.value.atributte3 : '';
+                            var atributte4Label = (this.labelsVisible) ? cell.value.atributte4 : '';
+                            var atributte5Label = (this.labelsVisible) ? cell.value.atributte5 : '';
+                            var method1Label = (this.labelsVisible) ? cell.value.method1 : '';
+                            var method2Label = (this.labelsVisible) ? cell.value.method2 : '';
+                            var method3Label = (this.labelsVisible) ? cell.value.method3 : '';
+                            var method4Label = (this.labelsVisible) ? cell.value.method4 : '';
+                            var method5Label = (this.labelsVisible) ? cell.value.method5 : '';
                             var identifierValue;
                             var nameValue;
+                            var stereotypeValue;
+                            var atributte1Value;
+                            var atributte2Value;
+                            var atributte3Value;
+                            var atributte4Value;
+                            var atributte5Value;
+                            var method1Value;
+                            var method2Value;
+                            var method3Value;
+                            var method4Value;
+                            var method5Value;
                             
                             if (!this.model.isCollapsed(cell) && geometry != null && (geometry.offset == null ||
                                 (geometry.offset.x == 0 && geometry.offset.y == 0)) && this.model.isVertex(cell) &&
@@ -941,6 +974,13 @@ Delete (cmd + 0)"
                                 } else {
                                     identifierValue = identifierLabel;
                                 }
+
+                                /* if(max < stereotypeLabel.length)
+                                {
+                                    stereotypeValue = stereotypeLabel.substring(0, max) + '...';
+                                } else {
+                                    stereotypeValue = stereotypeLabel;
+                                } */
 
                                 if (max < nameLabel.length)
                                 {   
@@ -959,7 +999,7 @@ Delete (cmd + 0)"
                                     }
 
                                 } else {
-                                    nameValue = nameLabel;
+                                    /* nameValue = nameLabel; */
                                 }
 
                                 if (cell.value.type == 'Actor') {
@@ -973,6 +1013,34 @@ Delete (cmd + 0)"
                                     nameValue = nameLabel;
                                 }
 
+                                if(cell.value.type == 'Communicative Event'){
+                                    /* if(max < stereotypeLabel.length) {
+                                    stereotypeValue = stereotypeLabel.substring(0, max) + '...';
+                                } else {
+                                    stereotypeValue = stereotypeLabel;
+                                } */ 
+                                    /* identifierValue = 'ggg'; */
+                                    nameValue = nameLabel;
+                                    stereotypeValue = stereotypeLabel;
+                                }
+
+                                 if(cell.value.type == 'Atributte'){
+                                    atributte1Value = atributte1Label;
+                                    atributte2Value = atributte2Label;
+                                    atributte3Value = atributte3Label;
+                                    atributte4Value = atributte4Label;
+                                    atributte5Value = atributte5Label;
+                                }
+                                
+                                if(cell.value.type == 'Method'){
+                                    
+                                    method1Value = method1Label;
+                                    method2Value = method2Label;
+                                    method3Value = method3Label;
+                                    method4Value = method4Label;
+                                    method5Value = method5Label; 
+                                }
+
                                 if (cell.value.type == 'End') {
                                     //identifierValue = identifierLabel;
                                     identifierValue = '';
@@ -982,10 +1050,44 @@ Delete (cmd + 0)"
 
                             let label = '';
                             label += '<div style="color: black; width: 100%; text-align: center;">';
-                            label += '<div style="margin-top: 5px;">' + mxUtils.htmlEntities(`${identifierValue}`, false) + '</div>';
+                            label += '<div style="margin-top: 5px;">' + '<strong>' +mxUtils.htmlEntities(`${identifierValue}`, false) + '</strong>'+ '</div>';
                             label += '<div style="margin-bottom: 5px;">' +
                                 '<strong>' + mxUtils.htmlEntities(nameValue, false) + '</strong>' +
                                 '</div>';
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(stereotypeValue, false) + '</i>' +
+                                '</div>';
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributte1Value, false) + '</i>' +
+                                '</div>';
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributte2Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributte3Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributte4Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributte5Value, false) + '</i>' +
+                                '</div>';
+                                label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(method1Value, false) + '</i>' +
+                                '</div>';
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(method2Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(method3Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(method4Value, false) + '</i>' +
+                                '</div>'; 
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(method5Value, false) + '</i>' +
+                                '</div>'; 
+
                             label += '</div>';
 
                             return label

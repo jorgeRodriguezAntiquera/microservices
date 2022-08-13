@@ -185,7 +185,7 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes = []) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
@@ -194,6 +194,7 @@ Delete (cmd + 0)"
         this.atributte3 = atributte3 || '';
         this.atributte4 = atributte4 || '';
         this.atributte5 = atributte5 || '';
+        this.atributtes = atributtes || '';
         this.type = type || 'Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
@@ -208,7 +209,7 @@ Delete (cmd + 0)"
         this.method3 = method3 || '';
         this.method4 = method4 || '';
         this.method5 = method5 || '';
-        this.type = type || 'Support Method';
+        this.type = type || 'Method';
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -1033,7 +1034,7 @@ Delete (cmd + 0)"
                                 }
                                 
                                 if(cell.value.type == 'Method'){
-                                    
+                                    atributte1Value = atributte1Label;
                                     method1Value = method1Label;
                                     method2Value = method2Label;
                                     method3Value = method3Label;
@@ -1072,7 +1073,7 @@ Delete (cmd + 0)"
                             label += '<div style="margin-bottom: 5px;">' +
                                 '<i>' + mxUtils.htmlEntities(atributte5Value, false) + '</i>' +
                                 '</div>';
-                                label += '<div style="margin-bottom: 5px;">' +
+                            label += '<div style="margin-bottom: 5px;">' +
                                 '<i>' + mxUtils.htmlEntities(method1Value, false) + '</i>' +
                                 '</div>';
                             label += '<div style="margin-bottom: 5px;">' +

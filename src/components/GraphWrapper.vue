@@ -334,7 +334,7 @@ Delete (cmd + 0)"
                     {                                         
                         //console.log('Conectando Actor y CE o SCE...'); 
                         edgevalue.removeSelection = 0;
-                        edge.style='strokeWidth=2;strokeColor=#008200;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
+                        edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
                     }
 
                     //Interacción Comunicativa Saliente

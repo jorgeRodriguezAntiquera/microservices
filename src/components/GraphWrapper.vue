@@ -1,7 +1,10 @@
 <template>    
     <div style="cursor: default;">        
         <!-- div for modeler-->
-        <div id="container"></div>
+        <div id="container">
+        <button style="margin: 0% 94%; height: 40px; position: absolute;"> Login</button>
+
+        </div>
         <!-- div for rightbar-->
         <div id="rightbar" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; text-align: center;  display: flex;
     align-items: top;">            
@@ -52,6 +55,7 @@ Delete (cmd + 0)"
     import toolBarButtons from "../helpers/toolBarButtons";
     import validation from "../helpers/validation";
     import zoom from "../helpers/zoom";
+
 // MXGRAPH SETUP
 // if you plan to use the built-in interfaces, you need to specify the path to the resources
     const graphConfig = {
@@ -62,6 +66,7 @@ Delete (cmd + 0)"
         mxLoadResources: false, // Specifies if any resources should be loaded.  Default is true.
         mxLoadStylesheets: true, // Specifies if any stylesheets should be loaded.  Default is true
     };
+
 // MXGRAPH objects creation
     const {
         mxClient, mxUtils, mxEvent, mxEditor, mxRectangle, mxEllipse, mxActor, mxGraph, mxGeometry, mxCell,
@@ -70,6 +75,7 @@ Delete (cmd + 0)"
         mxEdgeStyle, mxWindow, mxKeyHandler, mxLog, mxShape, mxConnectionConstraint, mxPoint,
         mxPolyline, mxPerimeter, mxPrintPreview, mxMultiplicity, mxDragSource, mxEdgeHandler, mxGraphHandler
     } = mxgraph(graphConfig);
+
 // making MXGRAPH objects available for VUE
     window.mxClient = mxClient;
     window.mxUtils = mxUtils;
@@ -108,6 +114,8 @@ Delete (cmd + 0)"
     window.mxDragSource = mxDragSource;
     window.mxEdgeHandler = mxEdgeHandler;
     window.mxGraphHandler = mxGraphHandler;
+    window.scrollTo(0,document.body.scrollHeight);
+
     
     //CONSTANTS
     // Cells selection color
@@ -126,6 +134,8 @@ Delete (cmd + 0)"
     mxConstants.DROP_TARGET_COLOR = '#0000FF'; // Color de piscina
         
     var editor;    
+
+
     //CUSTOM DATA STRUCTURES (for each node and relationship)
  
     // CustomUserObject
@@ -137,6 +147,7 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
+
     // CustomStartObject
     window.CustomStartObject = function (definition, reference, identifier, name, type) {
         this.definition = definition || 'Start';
@@ -148,6 +159,7 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
+
     // CustomEndObject
     window.CustomEndObject = function (definition, reference, identifier, name, type) {
         this.definition = definition || 'End';
@@ -159,6 +171,7 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
+
     
     // CustomActorObject
     window.CustomActorObject = function (definition, identifier, name, type) {
@@ -170,69 +183,9 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
+
     // CustomSupportActorObject
-    window.CustomSupportActorObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Actor';
-        this.identifier = identifier || 'Actor';
-        this.name = name || 'New Actor';
-        this.type = type || 'Support Actor';
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-    // CustomCommunicativeInteractionObject
-    window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
-        this.definition = definition || 'Interaction';
-        this.identifier = identifier || 'R';
-        this.name = name || 'New Relation';
-        this.type = type || '"Relation"';
-        this.messageStructure = {
-            name: "New Structure",
-            type: "Structure",
-            children: []
-        };
-        this.removeSelection = removeSelection || 0;
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-    // CustomPrecedenceRelationshipObject
-    window.CustomRelationObject = function (definition, identifier, name, type) {
-        this.definition = definition || 'Relation';
-        this.identifier = identifier || '';
-        this.name = name || '';
-        this.type = type || 'Precedence Relation';                
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };
-    
-    // CustomCommunicativeEventObject
-    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, stereotype, description, channel,
-    temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
-    linkedReaction) {
-        this.definition = definition || 'Event';
-        this.reference = reference || 'Event Type 1';
-        this.identifier = identifier || 'CD ';
-        this.name = name || 'New Class ';
-        this.type = type || 'Communicative Event';
-        this.stereotype = stereotype || 'none';
-        this.description = description || '';
-        this.channel = channel || '';
-        this.temporalRestrictions = temporalRestrictions || '';
-        this.frequency = frequency || '';
-        this.contextConstraints = contextConstraints || '';
-        this.structuralConstraints = structuralConstraints || '';
-        this.treatment = treatment || '';
-        this.linkedCommunication = linkedCommunication || '';
-        this.linkedReaction = linkedReaction || '';  
-                  
-        this.clone = function () {
-            return mxUtils.clone(this);
-        };
-    };    
-    
-     window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes = []) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes = []) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
@@ -260,7 +213,62 @@ Delete (cmd + 0)"
         this.clone = function () {
             return mxUtils.clone(this);
         };
-    }
+    };
+
+    // CustomCommunicativeInteractionObject
+    window.CustomCommunicativeInteractionObject = function (definition, identifier, name, type, messageStructure, removeSelection) {
+        this.definition = definition || 'Interaction';
+        this.identifier = identifier || 'R';
+        this.name = name || 'New Relation';
+        this.type = type || '"Relation"';
+        this.messageStructure = {
+            name: "New Structure",
+            type: "Structure",
+            children: []
+        };
+        this.removeSelection = removeSelection || 0;
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+
+    // CustomPrecedenceRelationshipObject
+    window.CustomRelationObject = function (definition, identifier, name, type,rel) {
+        this.definition = definition || 'Relation';
+        this.identifier = identifier || '';
+        this.name = name || '';
+        this.type = type || 'Precedence Relation'; 
+        this.type = rel || '';               
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };
+    
+   // CustomCommunicativeEventObject
+    window.CustomCommunicativeEventObject = function (definition, reference, identifier, name, type, stereotype, description, channel,
+    temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
+    linkedReaction) {
+        this.definition = definition || 'Event';
+        this.reference = reference || 'Event Type 1';
+        this.identifier = identifier || 'CD ';
+        this.name = name || 'New Class ';
+        this.type = type || 'Communicative Event';
+        this.stereotype = stereotype || 'none';
+        this.description = description || '';
+        this.channel = channel || '';
+        this.temporalRestrictions = temporalRestrictions || '';
+        this.frequency = frequency || '';
+        this.contextConstraints = contextConstraints || '';
+        this.structuralConstraints = structuralConstraints || '';
+        this.treatment = treatment || '';
+        this.linkedCommunication = linkedCommunication || '';
+        this.linkedReaction = linkedReaction || '';  
+                  
+        this.clone = function () {
+            return mxUtils.clone(this);
+        };
+    };        
+        
     // CustomSpecialisedCommunicativeEventObject
     window.CustomSpecialisedCommunicativeEventObject = function (definition, reference, identifier, name, type, goals, description, channel,
     temporalRestrictions, frequency, contextConstraints, structuralConstraints, treatment, linkedCommunication,
@@ -307,6 +315,7 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
+
     export default {
         name: 'graph-wrapper',
         components: {EditForm, ModelDetailsForm},
@@ -327,6 +336,7 @@ Delete (cmd + 0)"
             changeObjectValues(newCellValue) {
                 editor.graph.model.setValue(this.currentCell, newCellValue);
             },
+
         // return the model details
             changeModelDetails(newCellValue) {
                 //editor.graph.model.setValue(this.currentCell, newCellValue);
@@ -337,7 +347,7 @@ Delete (cmd + 0)"
                 
                 graph.connectionHandler.addListener(mxEvent.CONNECT, function(sender, evt)
                 {   
-                    var edge = evt.getProperty('cell');
+                     var edge = evt.getProperty('cell');
                     let edgevalue = new window.CustomCommunicativeInteractionObject();
                     edge.value=edgevalue;
                     
@@ -462,6 +472,7 @@ Delete (cmd + 0)"
                 arrowStyle[mxConstants.STYLE_ROUNDED] = true;
                 arrowStyle[mxConstants.STYLE_EDGE] = mxEdgeStyle.OrthConnector;
                 //graph.edgeLabelsMovable = false;
+
                 var graphHandlerGetInitialCellForEvent = mxGraphHandler.prototype.getInitialCellForEvent;
                 mxGraphHandler.prototype.getInitialCellForEvent = function(me)
                 {
@@ -474,10 +485,12 @@ Delete (cmd + 0)"
                     
                     return cell;
                 };
+
                 graph.isPart = function(cell)
                 {
                     return this.getCurrentCellStyle(cell)['constituent'] == '1';
                 };
+
                 graph.selectCellForEvent = function(cell)
                 {
                     if (this.isPart(cell))
@@ -487,15 +500,20 @@ Delete (cmd + 0)"
                     
                     mxGraph.prototype.selectCellForEvent.apply(this, arguments);
                 };
+
                 
                 
                 let dragCallBackFunctStart = function (graph, evt, obj) {                    
                     
                     graph.recursiveResize = true;                    
+
                     let pt = graph.getPointForEvent(evt);
+
                     let parent = graph.getDefaultParent();
                     let model = graph.getModel();
+
                     let v = model.cloneCell(prototype);
+
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
@@ -505,6 +523,7 @@ Delete (cmd + 0)"
                         v.geometry.height = 60;
                         v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
                         graph.addCell(v, parent);
+
                     } finally {
                         model.endUpdate();
                     }
@@ -515,10 +534,15 @@ Delete (cmd + 0)"
                 let dragCallBackFunctEnd = function (graph, evt, obj) {                    
                     
                     graph.recursiveResize = true;                    
+
+
                     let pt = graph.getPointForEvent(evt);
+
                     let parent = graph.getDefaultParent();
                     let model = graph.getModel();
+
                     let v = model.cloneCell(prototype);
+
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
@@ -528,19 +552,25 @@ Delete (cmd + 0)"
                         v.geometry.height = 50;
                         v.style='shape=ellipse;fillColor=#00a8f3;strokeWidth=15;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=bottom;verticalAlign=middle;';
                         graph.addCell(v, parent);
+
                     } finally {
                         model.endUpdate();
                     }
                     graph.setSelectionCell(v);                    
                     
                 };
+
                 let dragCallBackFunctActor = function (graph, evt, obj) {                    
                     
                     graph.recursiveResize = true;                    
+
                     let pt = graph.getPointForEvent(evt);
+
                     let parent = graph.getDefaultParent();
                     let model = graph.getModel();
+
                     let v = model.cloneCell(prototype);
+
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
@@ -550,21 +580,23 @@ Delete (cmd + 0)"
                         v.geometry.height = 75;
                         v.style='shape=actor;fillColor=#00a8f3;strokeWidth=3;resizable=0;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=top;verticalAlign=bottom;';
                         graph.addCell(v, parent);
+
                     } finally {
                         model.endUpdate();
                     }
                     graph.setSelectionCell(v);                    
                     
                 };
+
                 let dragCallBackFunctCommunicativeEvent = function (graph, evt, obj) {
+
                     graph.recursiveResize = true;
                     
                     let pt = graph.getPointForEvent(evt);
+
                     let parent = graph.getDefaultParent();                    
                     let model = graph.getModel();                    
                     let v = model.cloneCell(prototype);
-                    /* let sac = new window.CustomSupportActorObject();
-                    let sac1 = new window.CustomSupportActorObject(); */
                     let sac = new window.CustomSupportAtributteObject();
                     let sac1 = new window.CustomSupportMethodObject();
                     model.beginUpdate();
@@ -580,26 +612,36 @@ Delete (cmd + 0)"
                         //ADD Support Actor as vertex inside the Communicative Event Vertex
                         let v1 = graph.insertVertex(v, null, sac, 0, 55, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
                         let v2 = graph.insertVertex(v, null, sac1, 0, 115, 150, 60, 'constituent=1;deletable=0;arcSize=10;rounded=0;strokeWidth=3;shape=rectangle;fillColor=white;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;')
+
                         
+
                         //rounded=0;whiteSpace=wrap;html=1;autosize=1;resizable=0;opacity=50; arcSize=10;rounded=1;
                         //v1.setConnectable(false);
                         //v2.setConnectable(false);                        
                         graph.addCell(v, parent);
+
                     } finally {
                         model.endUpdate();
                     }
                     graph.setSelectionCell(v);
                     
                 };                
+
                 let dragCallBackFunctSpecialisedCommunicativeEvent = function (graph, evt, obj) {
+
                     graph.recursiveResize = true;
+
                     let pt = graph.getPointForEvent(evt);
+
                     let parent = graph.getDefaultParent();
                     let model = graph.getModel();
+
                     let v = model.cloneCell(prototype);                    
                     let sac = new window.CustomSupportActorObject();
                     let ice1 = new window.CustomInternalCommunicativeEventObject();
                     let ice2 = new window.CustomInternalCommunicativeEventObject();
+
+
                     model.beginUpdate();
                     try {
                         v.setValue(obj);
@@ -613,17 +655,20 @@ Delete (cmd + 0)"
                         let v3 = graph.insertVertex(v, null, sac, 0, 140, 240, 50, 'constituent=1;deletable=0;arcSize=8;rounded=1;strokeWidth=3;resizable=1;shape=rectangle;fillColor=#00a8f3;fontSize=12;fontFamily=Arial;strokeColor=#000000;verticalLabelPosition=middle;verticalAlign=middle;');                        
                         v3.setConnectable(false);
                         graph.addCell(v, parent);
+
                     } finally {
                         model.endUpdate();
                     }
                     graph.setSelectionCell(v);
                     
                 };
+
                 var numberStart = 0;
                 var numberEnd = 0;
                 var numberActor = 0;
                 var numberCE = 0;
                 var numberSCE = 0;
+
                 // Passes type of node depending on dragged icon
                 let dragStartCallBackFunct = function (graph, evt) {                    
                     let obj = new window.CustomStartObject();
@@ -648,6 +693,7 @@ Delete (cmd + 0)"
                     obj.identifier = obj.identifier+numberActor;
                     dragCallBackFunctActor(graph, evt, obj);
                 };                
+
                 let dragCommunicativeEventCallBackFunct = function (graph, evt) {
                     let obj = new window.CustomCommunicativeEventObject();
                     numberCE = numberCE+1;
@@ -655,6 +701,7 @@ Delete (cmd + 0)"
                     obj.identifier = obj.identifier+numberCE;
                     dragCallBackFunctCommunicativeEvent(graph, evt, obj);
                 };
+
                 let dragSpecialisedCommunicativeEventCallBackFunct = function (graph, evt) {
                     let obj = new window.CustomSpecialisedCommunicativeEventObject();
                     numberSCE = numberSCE+1;
@@ -662,10 +709,13 @@ Delete (cmd + 0)"
                     obj.identifier = obj.identifier+numberSCE;
                     dragCallBackFunctSpecialisedCommunicativeEvent(graph, evt, obj);
                 };            
+
                 // Creates the image which is used as the sidebar icon (drag source)                
+
                 // Specialised Communicative Event concept wrapper                
-                /* let specialisedCommunicativeEventWrapper = document.createElement('div');
-                specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
+
+                let specialisedCommunicativeEventWrapper = document.createElement('div');
+                /* specialisedCommunicativeEventWrapper.style.cursor = 'pointer';
                 specialisedCommunicativeEventWrapper.style.margin = '0px 5px 20px 5px';
                 specialisedCommunicativeEventWrapper.style.width = '75px';
                 specialisedCommunicativeEventWrapper.style.height = '75px';
@@ -676,9 +726,11 @@ Delete (cmd + 0)"
                 specialisedCommunicativeEventWrapper.style.justifyContent = 'center';
                 specialisedCommunicativeEventWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/specialised.png></div>';
                 sidebar.appendChild(specialisedCommunicativeEventWrapper);
+
                 let titleSpecialisedCommunicativeEventWrapper = document.createElement('div');
-                titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>'; */
-                /* sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);   */                                         
+                titleSpecialisedCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Specialised Communicative Event</div>';
+                sidebar.appendChild(titleSpecialisedCommunicativeEventWrapper);       */                                     
+
                 // Communicative Event concept wrapper
                 let communicativeEventWrapper = document.createElement('div');
                 communicativeEventWrapper.style.cursor = 'pointer';
@@ -692,13 +744,14 @@ Delete (cmd + 0)"
                 communicativeEventWrapper.style.justifyContent = 'center';
                 communicativeEventWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/class_block.png></div>';
                 sidebar.appendChild(communicativeEventWrapper);
+
                 let titleCommunicativeEventWrapper = document.createElement('div');
                 titleCommunicativeEventWrapper.innerHTML = '<div style="font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: black; text-align: center;">Class</div>';
-                sidebar.appendChild(titleCommunicativeEventWrapper);     
+                sidebar.appendChild(titleCommunicativeEventWrapper);    
                 
                 // Actor concept wrapper                
                 let actorWrapper = document.createElement('div');
-                actorWrapper.style.cursor = 'pointer';
+                /* actorWrapper.style.cursor = 'pointer';
                 actorWrapper.style.margin = '0px 5px 20px 5px';
                 actorWrapper.style.width = '75px';
                 actorWrapper.style.height = '75px';
@@ -707,14 +760,16 @@ Delete (cmd + 0)"
                 actorWrapper.style.flexWrap = 'wrap';
                 actorWrapper.style.alignItems = 'center';
                 actorWrapper.style.justifyContent = 'center';
-                /* actorWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/actor.png></div>';
-                sidebar.appendChild(actorWrapper);   */
+                actorWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/actor.png></div>';
+                sidebar.appendChild(actorWrapper);  
+
                 let titleActorWrapper = document.createElement('div');
                 titleActorWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Actor</div>';
-                /* sidebar.appendChild(titleActorWrapper);     */            
+                sidebar.appendChild(titleActorWrapper);         */        
+
                 // End concept wrapper                
                 let endWrapper = document.createElement('div');
-                endWrapper.style.cursor = 'pointer';
+                /* endWrapper.style.cursor = 'pointer';
                 endWrapper.style.margin = '0px 5px 20px 5px';
                 endWrapper.style.width = '60px';
                 endWrapper.style.height = '60px';
@@ -723,15 +778,16 @@ Delete (cmd + 0)"
                 endWrapper.style.flexWrap = 'wrap';
                 endWrapper.style.alignItems = 'center';
                 endWrapper.style.justifyContent = 'center';
-                /* endWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/end.png></div>';
-                sidebar.appendChild(endWrapper);   */
+                endWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/end.png></div>';
+                sidebar.appendChild(endWrapper);  
+
                 let titleEndWrapper = document.createElement('div');
                 titleEndWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">End</div>';
-                /* sidebar.appendChild(titleEndWrapper);      */
+                sidebar.appendChild(titleEndWrapper);    */  
             
                 // Start concept wrapper                
-                let startWrapper = document.createElement('div');
-                startWrapper.style.cursor = 'pointer';
+                 let startWrapper = document.createElement('div');
+                /*startWrapper.style.cursor = 'pointer';
                 startWrapper.style.margin = '0px 5px 20px 5px';
                 startWrapper.style.width = '60px';
                 startWrapper.style.height = '60px';
@@ -740,22 +796,30 @@ Delete (cmd + 0)"
                 startWrapper.style.flexWrap = 'wrap';
                 startWrapper.style.alignItems = 'center';
                 startWrapper.style.justifyContent = 'center';
-                /* startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/start.png></div>';
-                sidebar.appendChild(startWrapper);   */
-                /* let titleStartWrapper = document.createElement('div');
-                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>'; */
-                /* sidebar.appendChild(titleStartWrapper);    */  
+                startWrapper.innerHTML = '<div><img src='+mxImageBasePath +'/start.png></div>';
+                sidebar.appendChild(startWrapper);  
+
+                let titleStartWrapper = document.createElement('div');
+                titleStartWrapper.innerHTML = '<div style="font-weight: bold; margin-top: 10px;font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #C0C0C0; text-align: center;">Start</div>';
+                sidebar.appendChild(titleStartWrapper);   */   
+
                 // Creates the image which is used as the drag icon (preview)
+
                 let dragImageStart = startWrapper.cloneNode(true);
                 mxUtils.makeDraggable(startWrapper, graph, dragStartCallBackFunct, dragImageStart);
+
                 let dragImageEnd = endWrapper.cloneNode(true);
                 mxUtils.makeDraggable(endWrapper, graph, dragEndCallBackFunct, dragImageEnd);
+
                 let dragImageActor = actorWrapper.cloneNode(true);
                 mxUtils.makeDraggable(actorWrapper, graph, dragActorCallBackFunct, dragImageActor);
+
                 let dragImageCommunicativeEvent = communicativeEventWrapper.cloneNode(true);
                 mxUtils.makeDraggable(communicativeEventWrapper, graph, dragCommunicativeEventCallBackFunct, dragImageCommunicativeEvent);
+
                 let dragImageSpecialisedCommunicativeEvent = specialisedCommunicativeEventWrapper.cloneNode(true);
                 mxUtils.makeDraggable(specialisedCommunicativeEventWrapper, graph, dragSpecialisedCommunicativeEventCallBackFunct, dragImageSpecialisedCommunicativeEvent);                
+
             },
                         
             // Create and configure the model editor

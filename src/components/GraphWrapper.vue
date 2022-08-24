@@ -185,16 +185,10 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributtes) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
-        this.atributte1 = atributte1 || '';
-        this.atributte2 = atributte2 || '';
-        this.atributte3 = atributte3 || '';
-        this.atributte4 = atributte4 || '';
-        this.atributte5 = atributte5 || '';
-        this.atributtes = atributtes || '';
         this.atributtes = {
             name: "New Atributtes",
             children: []
@@ -204,15 +198,10 @@ Delete (cmd + 0)"
             return mxUtils.clone(this);
         };
     };
-    window.CustomSupportMethodObject = function (definition, identifier, name, type, method1, method2, method3, method4, method5, methods) {
+    window.CustomSupportMethodObject = function (definition, identifier, name, type, methods) {
         this.definition = definition || 'Method';
         this.identifier = identifier || 'Method';
         this.name = name || 'New Method';
-        this.method1 = method1 || '';
-        this.method2 = method2 || '';
-        this.method3 = method3 || '';
-        this.method4 = method4 || '';
-        this.method5 = method5 || '';
         this.methods = {
             name: "New Method",
             children: []
@@ -944,29 +933,17 @@ Delete (cmd + 0)"
                             var nameLabel = (this.labelsVisible) ? cell.value.name : '';
                             var geometry = this.model.getGeometry(cell);
                             var stereotypeLabel = (this.labelsVisible) ? cell.value.stereotype : '';
-                            var atributte1Label = (this.labelsVisible) ? cell.value.atributte1 : '';
-                            var atributte2Label = (this.labelsVisible) ? cell.value.atributte2 : '';
-                            var atributte3Label = (this.labelsVisible) ? cell.value.atributte3 : '';
-                            var atributte4Label = (this.labelsVisible) ? cell.value.atributte4 : '';
-                            var atributte5Label = (this.labelsVisible) ? cell.value.atributte5 : '';
-                            var method1Label = (this.labelsVisible) ? cell.value.method1 : '';
-                            var method2Label = (this.labelsVisible) ? cell.value.method2 : '';
-                            var method3Label = (this.labelsVisible) ? cell.value.method3 : '';
-                            var method4Label = (this.labelsVisible) ? cell.value.method4 : '';
-                            var method5Label = (this.labelsVisible) ? cell.value.method5 : '';
+                            /* var atributte1Label = (this.labelsVisible) ? cell.value.atributte1 : ''; */
+                           var atributtesLabel = (this.labelsVisible) ? cell.value.atributtes: '';
+                            /* var method1Label = (this.labelsVisible) ? cell.value.method1 : ''; */
+                       
                             var identifierValue;
                             var nameValue;
                             var stereotypeValue;
-                            var atributte1Value;
-                            var atributte2Value;
-                            var atributte3Value;
-                            var atributte4Value;
-                            var atributte5Value;
-                            var method1Value;
-                            var method2Value;
-                            var method3Value;
-                            var method4Value;
-                            var method5Value;
+                            /* var atributte1Value; */
+                            /* var method1Value; */
+                            
+                            var atributtesValue;
                             
                             if (!this.model.isCollapsed(cell) && geometry != null && (geometry.offset == null ||
                                 (geometry.offset.x == 0 && geometry.offset.y == 0)) && this.model.isVertex(cell) &&
@@ -1034,20 +1011,14 @@ Delete (cmd + 0)"
                                 }
 
                                  if(cell.value.type == 'Atributte'){
-                                    atributte1Value = atributte1Label;
-                                    atributte2Value = atributte2Label;
-                                    atributte3Value = atributte3Label;
-                                    atributte4Value = atributte4Label;
-                                    atributte5Value = atributte5Label;
+                                    /* atributte1Value = atributte1Label; */
+                                    atributtesValue = atributtesLabel;
+                                    
                                 }
                                 
                                 if(cell.value.type == 'Method'){
-                                    atributte1Value = atributte1Label;
-                                    method1Value = method1Label;
-                                    method2Value = method2Label;
-                                    method3Value = method3Label;
-                                    method4Value = method4Label;
-                                    method5Value = method5Label; 
+                                    /* method1Value = method1Label; */
+                                   
                                 }
 
                                 if (cell.value.type == 'End') {
@@ -1066,37 +1037,14 @@ Delete (cmd + 0)"
                             label += '<div style="margin-bottom: 5px;">' +
                                 '<i>' + mxUtils.htmlEntities(stereotypeValue, false) + '</i>' +
                                 '</div>';
-                            label += '<div style="margin-bottom: 5px;">' +
+                            /* label += '<div style="margin-bottom: 5px;">' +
                                 '<i>' + mxUtils.htmlEntities(atributte1Value, false) + '</i>' +
+                                '</div>'; */ 
+                           
+                            label += '<div style="margin-bottom: 5px;">' +
+                                '<i>' + mxUtils.htmlEntities(atributtesValue, false) + '</i>' +
                                 '</div>';
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(atributte2Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(atributte3Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(atributte4Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(atributte5Value, false) + '</i>' +
-                                '</div>';
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(method1Value, false) + '</i>' +
-                                '</div>';
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(method2Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(method3Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(method4Value, false) + '</i>' +
-                                '</div>'; 
-                            label += '<div style="margin-bottom: 5px;">' +
-                                '<i>' + mxUtils.htmlEntities(method5Value, false) + '</i>' +
-                                '</div>'; 
-
+                            
                             label += '</div>';
 
                             return label

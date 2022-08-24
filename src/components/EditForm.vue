@@ -38,22 +38,7 @@
             
 
             <div>
-                <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Identifier:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Identifier" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.identifier"/>
-                </div> -->
-                <!-- <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
-                    Name:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Name" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.name"/>
-                           
-                        
-                </div> -->
+                
 
             </div>
         </div>
@@ -106,122 +91,22 @@
                            v-model="cellData.value.description"/>
                 </div>                                               
             </div>
-           <!--  <div style="padding-bottom: 5px; padding-top: 7px;">
-                <strong style="color: white;"><i class='fas fa-bell'/> Atributte</strong>
-            </div> -->
+           
             <div>
-                 <!-- <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Name Atributte:
-                </div>  -->
+                 
                 <div style="display: flex;">
 
-                  <!-- <input @focus="$event.target.select()" type="text" placeholder="Name Atributte" style="outline: none; pointer-events: auto; width : 50%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change" v-model="cellData.value.channel"/>
-
-
-                    <Select @focus="$event.target.select()" type="text" placeholder="Atributte" style="outline: none; pointer-events: auto; width : 50%; margin-left: 5%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                    v-model="cellData.value.structuralConstraints">
-
-                    <option disabled value="">Please select one</option>
-                    <option>int</option>
-                    <option>float</option>
-                    <option>double</option>
-                    <option>string</option>
-                    <option>boolean</option>
-                    </select>  
-  
-                     -->
-                <!-- <div class="work-experiences">
-                    <div class="form-row" style="display: flex;" v-for="(experience, index) in workExperiences" :key="index">
-                        <div class="form-group row-md-6">
-                            <div>
-                                <input v-model="experience.company" :name="`workExperiences[${index}][company]`" type="text" class="form-control" placeholder="Atributte">
-                                <button @click="addExperience" type="button" class="btn btn-secondary">Add</button>
-                            </div>
-                        </div>
-                     </div>
-                </div> -->
+                  
 
                 
       </div>
-<!-- 
-      <div class="form-group">
-        <button @click="addExperience" type="button" class="btn btn-secondary">Add</button>
-      </div> -->
+
+      
 
                   
                           
             </div>
-           <!--  <div style="padding-top: 5px;">
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Temporal Restrictions:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Temporal Restrictions" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.temporalRestrictions"/>
-                </div>                                               
-            </div> -->
-            <!-- <div style="padding-top: 5px;">
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Frequency:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Frequency" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.frequency"/>
-                </div>                                               
-            </div> -->
-             <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
-                <strong style="color: white;"><i class='fas fa-bell'/> Methods</strong>
-            </div>
-            <div class="work-experiences">
-                    <div class="form-row" style="display: flex;" v-for="(experience, index) in methods" :key="index">
-                        <div class="form-group row-md-6">
-                            <div>
-                                <input v-model="experience.company" :name="`methods[${index}][company]`" type="text" class="form-control" placeholder="method">
-                                <button @click="addMethod" type="button" class="btn btn-secondary">Add</button>
-                            </div>
-                        </div>
-                     </div>
-                </div> -->
-            <!-- <div>
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Methods:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Method" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.contextConstraints"/>
-                </div>                                               
-            </div>  -->
-            <!-- <div style="padding-top: 5px;">
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Structural Constraints:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Structural Constraints" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.structuralConstraints"/>
-                </div>                                               
-            </div> -->
-            <!-- <div style="padding-bottom: 5px; padding-top: 7px;">
-                <strong style="color: white;"><i class='fas fa-comments'/> Reaction Requirements</strong>
-            </div> -->
-            <!-- <div>
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Treatment:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Treatment" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.treatment"/>
-                </div>                                               
-            </div> -->
-            <!-- <div style="padding-top: 5px;">
-                <div style="color: #C0C0C0; padding-bottom: 2px;">
-                    Linked Communication:
-                </div>
-                <div style="display: flex;">
-                    <input @focus="$event.target.select()" type="text" placeholder="Linked Communication" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
-                           v-model="cellData.value.linkedCommunication"/>
-                </div>                                               
-            </div> -->
-            <!--  -->
+           
             
         </div>
 
@@ -246,23 +131,10 @@
                 <ul>
                     <li><node :node="cellData.value.atributtes" no-remove style="margin-top: -5px; padding-left: 0px;"/></li>
                 </ul>
+                <!-- <console.log>{{cellData.value.atributtes}}</console.log> -->
             </div>
 
-            <!-- <div class="work-experiences">
-                    <div class="form-col" style="display: flex ;padding-top: 7px;;" v-for="(experience, index) in methods" :key="index">
-                        <div class="form-group col">
-                            
-                                <div class="input-group">
-                                <input v-model="experience.company" :name="`methods[${index}][company]`" type="text"  style="outline: none; pointer-events: auto; width : 30px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" class="form-control" placeholder="Atributte">
-                                
-                                <button @click="addMethod" type="button" style="width:50px; font-size: 11px; " class="btn btn-secondary">Add</button>
-                                <button @click="removeMethod" type="button" style="width:60px; font-size: 11px; " class="btn btn-secondary">Remove</button>
-                                
-                                </div>
-                            
-                        </div>
-                     </div>
-                </div> -->
+    
 
 
          </div> 
@@ -315,7 +187,7 @@
 <script>
     import debounce from '../helpers/debounce'
     import Node from "./Node.vue";
-    import Atributte from "./Atributte.vue"
+    
 
     // Prevent error
     document.onkeydown = function(evt) {
@@ -330,26 +202,13 @@
 
     export default {
         name: 'EditForm',
-        components: {Node,Atributte},
+        components: {Node},
         props: {
             cellData: {
                 type: Object
             }
         },
-        data: () => ({
-    workExperiences: [
-      {
-        company: "",
-      }
-    ],
-    methods: [
-        {
-            method: "",
-        }
-    ]
-  }),
         
-    
   
         methods: {
             // Eliminate frequent requests
@@ -357,23 +216,7 @@
                // Report changes
                 this.$emit('change', this.cellData.value);
             }, 200),
-            addExperience () {
-      this.workExperiences.push({
-        company: '',
-        title: ''
-      })
-    },
-    addMethod(){
-        this.methods.push({
-            method: "",
-        })
-
-    },
-    removeMethod(){
-        this.methods.pop({
-            method:""
-        })
-    }
+            
             
         }
        

@@ -1,7 +1,19 @@
 <template>
   <div style="white-space: pre;">
     <!-- All -->
-    <a class="container" v-if="node.type != 'Data Field' && node.type != 'Reference Field'">
+    <div>
+    <input style="padding-top: 6px; padding-left: 0px; width : 90px;" type="text" placeholder="enter name" v-model="node.name" />
+    <button @click="addChild">add</button>
+    <!-- <console.log>{{node}}</console.log> -->
+    
+    <button v-if="!noRemove" @click="$emit('remove');" style="width:50px">delete</button>
+    <ul  style="padding-top: 6px; padding-left: 0px;" v-if="node.children">
+      <li v-for="(child, index) in node.children" :key="index" style="padding-top: 6px; padding-left: 0px;">
+        <node :node="child" @remove="remove(index);"></node>
+      </li>
+    </ul>
+  </div>
+    <!-- <a class="container" v-if="node.type != 'Data Field' && node.type != 'Reference Field'">
       <a disabled class="a" id='iconInput'><i class="fas fa-list-ul"></i></a>
       <input type="text" :placeholder="node.type" v-model="node.name" style="width : 104px; padding-bottom: 4px;" class="messageStructures"/>
       <br>
@@ -14,9 +26,9 @@
         <a @click="addSpecialisation" title="Add Specialisation" id="specialisation" class="a"><i class="fas fa-bars"></i></a>
         <a v-if="!noRemove" @click="$emit('remove');" title="Delete" class="a"><i class="fas fa-eraser"></i></a>
       </a>
-    </a>
+    </a> -->
     <!-- Data Field -->
-    <a v-if="node.type == 'Data Field'">
+    <!-- <a v-if="node.type == 'Data Field'">
       <a class="container">
         <a disabled class="a" id='iconInput'><i class="far fa-folder-open"></i></a>
         <input type="text" :placeholder="node.type" v-model="node.name" class="messageStructures"/>
@@ -67,9 +79,9 @@
           <input type="text" placeholder='Example' v-model="node.example[3]" class="example">
         </div>
       </a>
-    </a>
+    </a> -->
     <!-- Reference Field -->
-    <a v-if="node.type == 'Reference Field'">
+    <!-- <a v-if="node.type == 'Reference Field'">
       <a class="container">
         <a disabled class="a" id='iconInput'><i class="far fa-folder-open"></i></a>
         <input type="text" :placeholder="node.type" v-model="node.name" class="messageStructures"/>
@@ -100,7 +112,7 @@
         <li v-for="(child, index) in node.children" :key="index">
             <node :node="child" @remove="remove(index);"></node>
         </li>
-    </ul>
+    </ul> -->
 
   </div>
 </template>
@@ -169,6 +181,15 @@ export default {
         operation: "Operation",
         domain: "Domain (Object)",
         example: "Example: A513, Tyrell",
+        children: []
+      });
+    },
+    remove(index) {
+      this.node.children.splice(index, 1);
+    },
+    addChild() {
+      this.node.children.push({
+        name: "",
         children: []
       });
     }

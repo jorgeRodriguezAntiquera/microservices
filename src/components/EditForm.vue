@@ -241,7 +241,14 @@
             <div style="padding-top: 5px;">
                                                         
             </div>
-            <div class="work-experiences">
+
+            <div style="overflow: auto; height: 400px; width: 100%;">
+                <ul>
+                    <li><node :node="cellData.value.atributtes" no-remove style="margin-top: -5px; padding-left: 0px;"/></li>
+                </ul>
+            </div>
+
+            <!-- <div class="work-experiences">
                     <div class="form-col" style="display: flex ;padding-top: 7px;;" v-for="(experience, index) in methods" :key="index">
                         <div class="form-group col">
                             
@@ -255,7 +262,9 @@
                             
                         </div>
                      </div>
-                </div>
+                </div> -->
+
+
          </div> 
 
 
@@ -263,21 +272,12 @@
             <div style="padding-bottom: 5px; padding-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-bell'/> Method</strong>
             </div>
-            <div class="work-experiences">
-                    <div class="form-col" style="display: flex ;padding-top: 7px;;" v-for="(experience, index) in methods" :key="index">
-                        <div class="form-group col">
-                            
-                                <div class="input-group">
-                                <input v-model="experience.company" :name="`methods[${index}][company]`" type="text"  style="outline: none; pointer-events: auto; width : 30px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" class="form-control" placeholder="Method">
-                                
-                                <button @click="addMethod" type="button" style="width:50px; font-size: 11px; " class="btn btn-secondary">Add</button>
-                                <button @click="removeMethod" type="button" style="width:60px; font-size: 11px; " class="btn btn-secondary">Remove</button>
-                                
-                                </div>
-                            
-                        </div>
-                     </div>
-                </div>
+            
+            <div style="overflow: auto; height: 400px; width: 100%;">
+                <ul>
+                    <li><node :node="cellData.value.methods" no-remove style="margin-top: -5px; padding-left: 0px;"/></li>
+                </ul>
+            </div>
          </div> 
 
         <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">   
@@ -295,7 +295,7 @@
                         <option>Composition</option>
                         
                     </select>
-                    
+                    <!-- <console.log>{{cellData.value.name}}</console.log> -->
                 </div>         
             <!-- <div style="margin-top: 7px;">
                 <strong style="color: white;"><i class='fas fa-envelope'/> Message Structure</strong>
@@ -315,6 +315,7 @@
 <script>
     import debounce from '../helpers/debounce'
     import Node from "./Node.vue";
+    import Atributte from "./Atributte.vue"
 
     // Prevent error
     document.onkeydown = function(evt) {
@@ -329,7 +330,7 @@
 
     export default {
         name: 'EditForm',
-        components: {Node},
+        components: {Node,Atributte},
         props: {
             cellData: {
                 type: Object

@@ -185,7 +185,7 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes = []) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributte1, atributte2, atributte3, atributte4, atributte5 , atributtes) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
@@ -195,12 +195,16 @@ Delete (cmd + 0)"
         this.atributte4 = atributte4 || '';
         this.atributte5 = atributte5 || '';
         this.atributtes = atributtes || '';
+        this.atributtes = {
+            name: "New Atributtes",
+            children: []
+        }
         this.type = type || 'Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
-    window.CustomSupportMethodObject = function (definition, identifier, name, type, method1, method2, method3, method4, method5) {
+    window.CustomSupportMethodObject = function (definition, identifier, name, type, method1, method2, method3, method4, method5, methods) {
         this.definition = definition || 'Method';
         this.identifier = identifier || 'Method';
         this.name = name || 'New Method';
@@ -209,6 +213,10 @@ Delete (cmd + 0)"
         this.method3 = method3 || '';
         this.method4 = method4 || '';
         this.method5 = method5 || '';
+        this.methods = {
+            name: "New Method",
+            children: []
+        }
         this.type = type || 'Method';
         this.clone = function () {
             return mxUtils.clone(this);
@@ -358,9 +366,14 @@ Delete (cmd + 0)"
                     ||(Object.values(evt.getProperty('cell').target.getValue(Object)).includes("Event Type 2"))))                    
                     {                                         
                         //console.log('Conectando Actor y CE o SCE...'); 
+                        
+                        console.log(JSON.stringify(edgevalue));
+                        
                         edgevalue.removeSelection = 0;
                          edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;'; 
-                        if(edge.value.name =="Association"){
+                         if(edgevalue.name =='Association')
+                        {
+                            console.log("entro");
                             edge.style='strokeWidth=2;strokeColor=black;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
                         }
                     }

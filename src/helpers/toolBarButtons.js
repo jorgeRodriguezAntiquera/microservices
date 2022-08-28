@@ -41,6 +41,7 @@ function exportModelJSON(graph, modelDetailsP) {
         /* "ends":[], */
         /* "communicativeEvents":[], */
         "classDiagram":[],
+        "Atributtes": [],
         /* "specialisedCommunicativeEvents":[], */
         "communicativeInteractions":[],
         "precedenceRelations":[]
@@ -71,6 +72,70 @@ function exportModelJSON(graph, modelDetailsP) {
         }
     }
 
+    /* for (let index = 0; index < selection.length; index++) {
+        if(selection[index].value.type == "Communicative Interaction"){
+             if(selection[index].geometry.points != null){
+                 var geometryPoints = []
+                 for (let a = 0; a < selection[index].geometry.points.length; a++) {
+                     geometryPoints[a] = selection[index].geometry.points[a];
+                 }
+                 var communicativeInteraction = {
+                     unique: selection[index].id,
+                     identifier: selection[index].value.identifier,
+                     name: selection[index].value.name,
+                     type: selection[index].value.type,
+                     messageStructure: selection[index].value.messageStructure,
+                     source: selection[index].source.id,
+                     target: selection[index].target.id,
+                     "points": geometryPoints
+                 }
+                 model.communicativeInteractions.push(communicativeInteraction);
+             } else {
+                 var communicativeInteraction = {
+                     unique: selection[index].id,
+                     identifier: selection[index].value.identifier,
+                     name: selection[index].value.name,
+                     type: selection[index].value.type,
+                     messageStructure: selection[index].value.messageStructure,
+                     source: selection[index].source.id,
+                     target: selection[index].target.id,
+                 }
+                 model.communicativeInteractions.push(communicativeInteraction);
+             }
+        }
+     } */
+
+
+    for (let index = 0; index < selection.length; index++) {
+        if(selection[index].value.type == "Atributte"){
+            if(selection[index].geometry.points != null){
+                var geometryPoints = []
+                for (let a = 0; a < selection[index].geometry.points.length; a++) {
+                    geometryPoints[a] = selection[index].geometry.points[a];
+                }
+            var atributte = {
+                unique: selection[index].id,
+                identifier: selection[index].value.identifier,
+                name: selection[index].value.name,
+                type: selection[index].value.type,
+                atributtes: selection[index].value.atributtes,
+                "points": geometryPoints
+            }
+            model.Atributtes.push(atributte);
+            }else{
+                var atributte = {
+                    unique: selection[index].id,
+                    identifier: selection[index].value.identifier,
+                    name: selection[index].value.name,
+                    type: selection[index].value.type,
+                    atributtes: selection[index].value.atributtes,
+                    
+                    
+                }
+                model.Atributtes.push(atributte);
+            }
+        }
+    }
     
     for (let index = 0; index < selection.length; index++) {
         if(selection[index].value.type == "Start"){

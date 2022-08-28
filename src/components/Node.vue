@@ -2,16 +2,26 @@
   <div style="white-space: pre;">
     <!-- All -->
     <div>
-    <input style="padding-top: 6px; padding-left: 0px; width : 90px;" type="text" placeholder="enter name" v-model="node.name" />
+      <div v-for="(find, index) in node" :key="index">
+    <input v-model="find.name" style="padding-top: 6px; padding-left: 0px; width : 90px;">
+    <button @click="deleteFind(index)">
+      delete
+    </button>
+  </div>
+  
+  <button @click="addFind">
+    Add
+  </button>
+    <!-- <input style="padding-top: 6px; padding-left: 0px; width : 90px;" type="text" placeholder="enter name" v-model="node.name" />
     <button @click="addChild">add</button>
-     <!-- <console.log>{{node}}</console.log>  -->
+     
     
-    <button v-if="!noRemove" @click="$emit('remove');" style="width:50px">delete</button>
+    <button v-if="!noRemove" @click="$emit('remove');"  v-show="k == node.length-1" style="width:50px">delete</button>
     <ul  style="padding-top: 6px; padding-left: 0px;" v-if="node.children">
       <li v-for="(child, index) in node.children" :key="index" style="padding-top: 6px; padding-left: 0px;">
         <node :node="child" @remove="remove(index);"></node>
       </li>
-    </ul>
+    </ul> -->
   </div>
     
 
@@ -36,13 +46,19 @@ export default {
   methods: {
    
     remove(index) {
-      this.node.children.splice(index, 1);
+      this.node.splice(index, 1);
     },
     addChild() {
-      this.node.children.push({
+      this.node.push({
         name: "",
-        children: []
+        
       });
+    },
+     addFind: function () {
+      this.node.push(  { name: '' });
+    },
+    deleteFind: function (index) {
+      this.node.splice(index, 1);
     }
   }
 };

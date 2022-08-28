@@ -185,27 +185,21 @@ Delete (cmd + 0)"
     };
 
     // CustomSupportActorObject
-    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributtes) {
+    window.CustomSupportAtributteObject = function (definition, identifier, name, type, atributtes = []) {
         this.definition = definition || 'Atributte';
         this.identifier = identifier || 'Atributte';
         this.name = name || 'New Atributte';
-        this.atributtes = {
-            name: "New Atributtes",
-            children: []
-        }
+        this.atributtes = atributtes || 'new atributtes';
         this.type = type || 'Atributte';
         this.clone = function () {
             return mxUtils.clone(this);
         };
     };
-    window.CustomSupportMethodObject = function (definition, identifier, name, type, methods) {
+    window.CustomSupportMethodObject = function (definition, identifier, name, type, methods =[]) {
         this.definition = definition || 'Method';
         this.identifier = identifier || 'Method';
         this.name = name || 'New Method';
-        this.methods = {
-            name: "New Method",
-            children: []
-        }
+        this.methods = methods || 'New Method';
         this.type = type || 'Method';
         this.clone = function () {
             return mxUtils.clone(this);
@@ -217,7 +211,7 @@ Delete (cmd + 0)"
         this.definition = definition || 'Interaction';
         this.identifier = identifier || 'R';
         this.name = name || 'New Relation';
-        this.type = type || '"Relation"';
+        this.type = type || 'Relation';
         this.messageStructure = {
             name: "New Structure",
             type: "Structure",
@@ -230,12 +224,11 @@ Delete (cmd + 0)"
     };
 
     // CustomPrecedenceRelationshipObject
-    window.CustomRelationObject = function (definition, identifier, name, type,rel) {
+    window.CustomRelationObject = function (definition, identifier, name, type) {
         this.definition = definition || 'Relation';
         this.identifier = identifier || '';
         this.name = name || '';
-        this.type = type || 'Precedence Relation'; 
-        this.type = rel || '';               
+        this.type = type || 'Precedence Relation';                
         this.clone = function () {
             return mxUtils.clone(this);
         };
@@ -346,6 +339,7 @@ Delete (cmd + 0)"
                 {   
                      var edge = evt.getProperty('cell');
                     let edgevalue = new window.CustomCommunicativeInteractionObject();
+                    console.log(edgevalue);
                     edge.value=edgevalue;
                     
                     //Interacción Comunicativa Entrante
@@ -359,12 +353,23 @@ Delete (cmd + 0)"
                         console.log(JSON.stringify(edgevalue));
                         
                         edgevalue.removeSelection = 0;
-                         edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;'; 
-                         if(edgevalue.name =='Association')
+                        /* Composition */
+                         edge.style='strokeWidth=2;strokeColor=black;dashed=0;shape=ARROW_DIAMOND;endArrow=none;startArrow=diamond;fillColor=#FFFFFF;html=1;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';  
+                        
+                        /* Dependecy */
+                         /* edge.style='strokeWidth=2;strokeColor=black;endArrow=classic;dashed=1;html=1;;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';  */
+
+                        /* Association */
+                        /* edge.style='strokeWidth=2;strokeColor=black;dashed=0;shape=Directional Connector;endArrow=open;html=1;fillColor=#ffffff;;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';  */
+                        
+                        /* Inheritance */
+                        /* edge.style='strokeWidth=2;strokeColor=black;dashed=0;shape=Directional Connector;endArrow=classic;html=1;fillColor=#ffffff;;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;'; */
+
+                          if(edgevalue.name =='Association')
                         {
                             console.log("entro");
-                            edge.style='strokeWidth=2;strokeColor=black;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
-                        }
+                            edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
+                        } 
                     }
                     //Interacción Comunicativa Saliente
                     if(((Object.values(evt.getProperty('cell').source.getValue(Object)).includes("Event Type 1"))
@@ -1012,7 +1017,11 @@ Delete (cmd + 0)"
 
                                  if(cell.value.type == 'Atributte'){
                                     /* atributte1Value = atributte1Label; */
-                                    atributtesValue = atributtesLabel;
+                                    if(atributtesLabel!=null){
+                                        /* atributtesValue(element => alert(element)); */
+                                        atributtesValue = atributtesLabel;
+                                    }
+                                 
                                     
                                 }
                                 

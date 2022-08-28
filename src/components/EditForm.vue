@@ -127,12 +127,15 @@
                                                         
             </div>
 
-            <div style="overflow: auto; height: 400px; width: 100%;">
+             <div style="overflow: auto; height: 400px; width: 100%;">
                 <ul>
                     <li><node :node="cellData.value.atributtes" no-remove style="margin-top: -5px; padding-left: 0px;"/></li>
                 </ul>
-                <!-- <console.log>{{cellData.value.atributtes}}</console.log> -->
-            </div>
+
+                 
+            </div> 
+            <!-- <console.log>{{cellData.value.atributtes}}</console.log> -->
+        
 
     
 
@@ -149,8 +152,15 @@
                 <ul>
                     <li><node :node="cellData.value.methods" no-remove style="margin-top: -5px; padding-left: 0px;"/></li>
                 </ul>
+
             </div>
+            <!-- <console.log>{{cellData.value.methods}}</console.log> -->
          </div> 
+
+
+
+
+
 
         <div v-if="cellData && (cellData.value.definition == 'Interaction') && (cellData.value.removeSelection == 0) && cellData.value">   
         <div style="color: #C0C0C0; padding-bottom: 2px; padding-top: 5px;">
@@ -187,7 +197,7 @@
 <script>
     import debounce from '../helpers/debounce'
     import Node from "./Node.vue";
-    
+    import GraphWrapper from "./GraphWrapper.vue"
 
     // Prevent error
     document.onkeydown = function(evt) {
@@ -216,13 +226,15 @@
                // Report changes
                 this.$emit('change', this.cellData.value);
             }, 200),
+           
+  }
             
             
         }
        
   
        
-    }       
+          
     
 
   

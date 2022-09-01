@@ -350,7 +350,7 @@ Delete (cmd + 0)"
                     {                                         
                         //console.log('Conectando Actor y CE o SCE...'); 
                         
-                        console.log(JSON.stringify(edgevalue));
+                        console.log(JSON.stringify(edgevalue.name));
                         
                         edgevalue.removeSelection = 0;
                         /* Composition */
@@ -365,7 +365,7 @@ Delete (cmd + 0)"
                         /* Inheritance */
                         /* edge.style='strokeWidth=2;strokeColor=black;dashed=0;shape=Directional Connector;endArrow=classic;html=1;fillColor=#ffffff;;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;'; */
 
-                          if(edgevalue.name =='Association')
+                          if(edgevalue.name == 'Association')
                         {
                             console.log("entro");
                             edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
@@ -941,7 +941,16 @@ Delete (cmd + 0)"
                             /* var atributte1Label = (this.labelsVisible) ? cell.value.atributte1 : ''; */
                            var atributtesLabel = (this.labelsVisible) ? cell.value.atributtes: '';
                             /* var method1Label = (this.labelsVisible) ? cell.value.method1 : ''; */
-                       
+                            
+
+                              
+                            const myJSON = JSON.stringify(eval(atributtesLabel)); 
+                            
+                            console.dir(myJSON);
+                            console.log(typeof JSON.stringify(myJSON));   
+
+                            /* console.dir(atributtesLabel); */
+                            
                             var identifierValue;
                             var nameValue;
                             var stereotypeValue;
@@ -1017,11 +1026,12 @@ Delete (cmd + 0)"
 
                                  if(cell.value.type == 'Atributte'){
                                     /* atributte1Value = atributte1Label; */
-                                    if(atributtesLabel!=null){
-                                        /* atributtesValue(element => alert(element)); */
+                                    /* if(atributtesLabel!=null){
+                                         atributtesValue(element => alert(element)); 
                                         atributtesValue = atributtesLabel;
-                                    }
-                                 
+                                    } */
+                                    atributtesValue = myJSON;
+                                    
                                     
                                 }
                                 
@@ -1050,7 +1060,7 @@ Delete (cmd + 0)"
                                 '<i>' + mxUtils.htmlEntities(atributte1Value, false) + '</i>' +
                                 '</div>'; */ 
                            
-                            label += '<div style="margin-bottom: 5px;">' +
+                            label += '<div style="margin-bottom: 5px;fontSize:5px">' +
                                 '<i>' + mxUtils.htmlEntities(atributtesValue, false) + '</i>' +
                                 '</div>';
                             

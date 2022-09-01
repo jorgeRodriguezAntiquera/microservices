@@ -167,7 +167,7 @@
                     Relation:
                 </div>
                 <div style="display: flex;">
-                    <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                    <!-- <select @focus="$event.target.select()" type="text" placeholder="Stereotypes" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
                            v-model="cellData.value.name">
                         <option disabled value="">Please select one</option>
                         <option>Association</option>
@@ -176,7 +176,9 @@
                         <option>Aggregation</option>
                         <option>Composition</option>
                         
-                    </select>
+                    </select> -->
+                    <input @focus="$event.target.select()" type="text" placeholder="Description" style="outline: none; pointer-events: auto; width : 100%; font-family: Arial, Helvetica, sans-serif; font-size: 11px;" @input="debounce_change"
+                           v-model="cellData.value.name"/>
                     <!-- <console.log>{{cellData.value.name}}</console.log> -->
                 </div>         
             <!-- <div style="margin-top: 7px;">

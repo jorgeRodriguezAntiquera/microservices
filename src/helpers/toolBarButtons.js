@@ -137,7 +137,7 @@ function exportModelJSON(graph, modelDetailsP) {
         }
     }
     
-    for (let index = 0; index < selection.length; index++) {
+    /* for (let index = 0; index < selection.length; index++) {
         if(selection[index].value.type == "Start"){
             var start = {
                 unique: selection[index].id,
@@ -149,9 +149,9 @@ function exportModelJSON(graph, modelDetailsP) {
             }
             model.starts.push(start);
         }
-    }
+    } */
 
-    for (let index = 0; index < selection.length; index++) {
+    /* for (let index = 0; index < selection.length; index++) {
         if(selection[index].value.type == "End"){
             var end = {
                 unique: selection[index].id,
@@ -163,7 +163,7 @@ function exportModelJSON(graph, modelDetailsP) {
             }
             model.ends.push(end);
         }
-    }
+    } */
     
     for (let index = 0; index < selection.length; index++) {
         if(selection[index].value.type == "Communicative Event"){

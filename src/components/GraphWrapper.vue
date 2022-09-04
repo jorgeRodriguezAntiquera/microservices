@@ -212,6 +212,7 @@ Delete (cmd + 0)"
         this.identifier = identifier || 'R';
         this.name = name || 'New Relation';
         this.type = type || 'Relation';
+        
         this.messageStructure = {
             name: "New Structure",
             type: "Structure",
@@ -339,8 +340,12 @@ Delete (cmd + 0)"
                 {   
                      var edge = evt.getProperty('cell');
                     let edgevalue = new window.CustomCommunicativeInteractionObject();
-                    console.log(edgevalue);
+                    /* console.dir(edgevalue); */
+                    
                     edge.value=edgevalue;
+                    console.dir(edge.value);
+                    console.dir(edge.value['name']);
+                    
                     
                     //Interacción Comunicativa Entrante
                     if((Object.values(evt.getProperty('cell').source.getValue(Object)).includes("Atributte"))
@@ -350,7 +355,7 @@ Delete (cmd + 0)"
                     {                                         
                         //console.log('Conectando Actor y CE o SCE...'); 
                         
-                        console.log(JSON.stringify(edgevalue.name));
+                        
                         
                         edgevalue.removeSelection = 0;
                         /* Composition */
@@ -365,11 +370,7 @@ Delete (cmd + 0)"
                         /* Inheritance */
                         /* edge.style='strokeWidth=2;strokeColor=black;dashed=0;shape=Directional Connector;endArrow=classic;html=1;fillColor=#ffffff;;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;'; */
 
-                          if(edgevalue.name == 'Association')
-                        {
-                            console.log("entro");
-                            edge.style='strokeWidth=2;strokeColor=red;dashed=1;shape=ARROW_DIAMOND;endArrow=classic;startArrow=diamond;fontSize=11;fontFamily=Arial;fontColor=#000000;labelBackgroundColor=#ffffff;labelBorderColor=#008200;';
-                        } 
+                         
                     }
                     //Interacción Comunicativa Saliente
                     if(((Object.values(evt.getProperty('cell').source.getValue(Object)).includes("Event Type 1"))
@@ -478,7 +479,7 @@ Delete (cmd + 0)"
                 var arrowStyle = graph.getStylesheet().getDefaultEdgeStyle();
                 arrowStyle[mxConstants.STYLE_ROUNDED] = true;
                 arrowStyle[mxConstants.STYLE_EDGE] = mxEdgeStyle.OrthConnector;
-                //graph.edgeLabelsMovable = false;
+                /* graph.edgeLabelsMovable = false; */
 
                 var graphHandlerGetInitialCellForEvent = mxGraphHandler.prototype.getInitialCellForEvent;
                 mxGraphHandler.prototype.getInitialCellForEvent = function(me)
